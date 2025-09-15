@@ -6,7 +6,7 @@ I have started preparing for the AWS Solutions Architect Certification - Associa
 # The Well-Architected Framework
 ## Section 2
 *Italics*, **Bold**, ***Bold and Italics***
-``code``
+``<?php echo "Hello World"; ?>``
 1. List Item A
 2. List Item B
 
