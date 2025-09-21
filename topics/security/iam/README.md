@@ -1,0 +1,167 @@
+# Identity & Access Manager (IAM)
+
+## Overview
+- **Identity & Access Manager (IAM):** global AWS service for managing users and groups.
+- **Root Account:** created by default, not to be shared
+- **Users:** people with access to AWS, can be standalone or part of a group or groups
+- **Groups:** categorizations of users, cannot contain other groups
+
+## Dashboard
+- Create user, set password policy, set user to group, create login link, add MFA, access reports, access 3rd party identity providers
+
+## Permissions
+- **Policies:** define the permissions of the users
+- **Least Privilege Principle:** gives users the least amount of permissions needed to perform tasks
+- Permission policies are JSON objects can be assigned to users or groups.
+
+## Policies
+- Set at group level, users within group can inherit
+- Structure: ``{Version: xxx, Id: xxx, Statement: [{Sid, Effect, Action, Principal: [], Action: [], Resource[], Condition: []}]}``
+- **Inline Policies:** policies set directly to users
+- **Version:** policy language version
+- **ID:** identifier of the policy
+- **Statement:** declares the permission being granted or denied, can be one or more (object)
+    - **Sid:** Statement ID
+    - **Effect:** Allow/Deny
+    - **Principal:** user/account/role that the policy applies to
+    - **Action:** actions which the policy controls (usually API calls for resources)
+    - **Resource:** the resource which the policy applies to
+    - **Conditions:** any conditions for the policy
+- Can use * as wildcard, ex: APIs Get*, Delete*
+- In UI:
+    - IAM > Policies > Policy Details > Permissions > JSON -> to modify the structure of the JSON
+    - There is a policy builder for help
+
+## Conditions
+- In the statment section of policies, where you can control the conditions of a policy
+- Example: restrict IP addresses making an API call
+- S3: be careful of bucket-level and object-level policies
+- Use ``aws:PrincipalOrgID`` to restrict access to organization accounts
+
+## IAM Role-Based Policies vs. Resource-Based Policies:
+- **Role-based Policies:** principal gives up original permissions and assumes permissions of the role
+- **Resource-based Policies:** principal does not give up any permissions
+
+## Password Policies
+- Set a password policy which all users must adhere to
+- Password policy can include:
+    - Minimum character length
+    - Character types
+    - Ability to change own passwords
+    - Password expiration duration
+    - Restrict password re-use
+- Multi-Factor Authentication (MFA)
+    - Protect root user at a minimum with MFA, but can also require MFA for users
+    - Can use virtual MFA device (google authenticator), U2F, security keys, or devices (like fobs)
+
+## Access Keys
+- You can access AWS via management console, CLI, or SDK
+- CLI and SDK access are also controlled via access keys
+- Access keys are generated through AWS console
+- Users can manage their own access keys
+- Should not be shared: Access Key ID is like a username and Secret Access Key is like a password
+
+## Roles for Services
+- Services need permission to perform actions across AWS
+- Permissions are assigned via IAM roles
+- Common roles: EC2 roles, S3 roles, Lambda roles, etc.
+- In UI: IAM > Roles > Create Role
+    - Trusted Entity Type: can be a service, account, 3rd party identity, SAML, or custom
+    - Service: select a service, create role, name, update JSON, then assign
+
+## Security Tools
+- **Credentials Report:** account-level report which shows users and status of the credentials (expired, last changed, etc.)
+- **Access Advisor Report:** user-level report which shows permissions assigned to users, access times, good for revising least priviledge
+
+# AWS Organizations
+- Global service allowing management of multiple accounts
+- **Management Account:** main account of the organization
+- **Member Account:** all accounts besides management account
+- Composed of Root Organization Unit (OU) and Sub-OUs
+    - **Root OU:** outermost OU for accounts, where management account usually sits
+    - Can have sub-OUs and nested OUs
+    - OUs are usually business-based, environment-based, or project-based
+- Benefits:
+    - Single payment method, consolidated billing to one account
+    - Aggregated resource usage -> discounts
+    - All discounts/reserved instances can be shared across accounts
+    - API for account creation
+- Advantages:
+    - Multi-Account vs One Account Multi-VPC (accounts more separated than VPC)
+    - Tagging for billing purposes, standardization
+    - Ability to enable CloudTrail on all accounts and store all logs on central S3
+    - Send CloudWatch logs to central account
+
+## Service Control Policies (SCP)
+- **Service Control Policies (SCP):** IAM policies applied to specific OUs within Organization
+- SCP cannot be applied to management account
+- Specifies the maximum permissions of a user/role
+- Does NOT grant permissions
+- IAM policies/resource policies still controll the permission access
+
+## Tag Policies
+- Organizations allow tag policies to standardize tags across resources
+- Defined as tag keys and values
+- Ensures consistent tags which help with auditing and categorization, for cost allocation and attribute management
+- Prevents non-compliant tagging as long as the resource is tagged
+- Integrate with EventBridge to generate reports for non-compliant resources with tags
+
+## IAM Permission Boundaries
+- Use a managed policy to set maximum permissions an IAM entity can get
+- Supported for users and roles but not groups
+- IAM policy is outside of a boundary, meaning the boundary supercedes a policy
+- Can be used in combination with AWS Organizations SCP
+- Use Cases:
+    - Delegate responsibilities to non-administrators (example: create new users)
+    - Allow devs to self-assign policies and manage permissions, without escalating their permissions
+    - Restrict on specific user instead of an account
+- **Effective Permissions:** The intersection of SCP, permission boundaries, and policies
+
+## IAM Policy Evaluation Logic
+- The flow of how AWS determines permissions
+- **Explicit Deny:** policy contains deny
+- **Implicit Deny:** policy does not deny, but there is no allow
+- **Session Principal:** role session or IAM federated user session
+    - Decision starts with deny, if there is no explicit deny then refer to SCP
+    - If allow exists, then check resource-based policies
+    - If allow exists, then check IAM boundaries
+    - If allow exists, then check session principal, if none then **allow**, else check session policy
+        - If no session policy, check if role policy exists, if exists then **allow**, else **deny**
+        - If session policy has allow then **allow**, else **deny**
+
+# AWS IAM Identity Center (SSO)
+- One login (SSO) for all AWS accounts with organization, business cloud apps, any SAML 2.0-enabled apps, EC2 Windows instances
+- ID providers such as AD, Okta can be built in ID store of Identity Center
+- Login Flow: Login -> AWS Identity Center -> Select Account -> AWS Console
+- Identity Center retrieves user identities from ID provider, then does SSO to destination
+- Permissions and Assignments:
+    - Multi-Account: manage access across AWS accounts in AWS organizations, using permission sets
+        - **Permission Sets:** define AWS access with one or more IAM policies assigned to users and groups
+    - **Application Assignments:** access to business apps with URLs, certificates, and metadata
+    - **Attribute-Based Access Control (ABAC):** fine-grained access controles based on users attributes stored in AWS IAM Identity Center
+        - can you assign based on tags?
+        - define permissions once, then modify by changing the attributes
+
+# AWS Directory Services
+- **AWS Directory Services:** similar implementation to Microsoft Active Directory with 3 flavors:
+    - **AWS Managed Microsoft Active Directory:** create AD in AWS, manage users on cloud after establishing trust with on-premises AD, supports MFA
+    - **AD Connector:** AD gateway proxy connects to on-premises AD, users managed on-premises, supports MFA
+    - **Simple AD:** AD-compatible managed directory on AWS
+            - used when there is no on-premises/external AD, cannot connect to another AD
+            - for use with Windows EC2, can join domain controllers as well
+- Integrates with AWS IAM Identity Center
+    - Either AWS managed AD, which is out-of-the-box
+    - Or to self-managed AD on-prem, either with trust or AD connector, some latency
+    - Depends on where you want to manage the users either on-prem or AWS
+
+# AWS Control Tower
+- **AWS Control Tower:** set up and govern secure and compliant multi-account AWS env
+- Uses AWS organizations to create accounts
+- Helps set up environments quickly, helps with policy management via Guardrails
+- Find and fix policy violations and monitor compliance
+
+## AWS Control Tower - Guardrails
+- **AWS Control Tower Guardrails:** ongoing governance for Control Tower environment (accounts)
+- **Preventative Guardrails:** restrict account actions with SCP
+- **Detective Guardrails:** detect non-compliance with AWS Config
+- Can alert findings with EventBride and remediate findings with Lambda
