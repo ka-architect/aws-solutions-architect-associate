@@ -164,4 +164,9 @@
 - Faster startup
 - Use cases: services that take long to initialize, long-running processing, RAM state needs to be saved
 
-
+## Amazon Machine Image (AMI)
+- **Amazon Machine Image (AMI):** pre-packaged customization of the EC2 instance, can be saved and used by multiple instances to reduce boot time
+- Powers the EC2 instance
+- Allows you to add your own software, configuration, OS, monitoring, etc.
+- You can choose between public AMIs (common AWS-provided), custom AMIs, or marketplace AMI's (user-created for sale)
+- Allows EC2 user data to be saved, when creating from AMI, EC2 user data is appended to the already existing user data within AMI
