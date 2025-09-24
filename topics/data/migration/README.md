@@ -41,3 +41,66 @@
 - Can sync to all storage classes of S3, EFS, and FSx (but not EBS)
 - Requires high network capacity otherwise use snowball
 - Its not continous so it needs to be scheduled (hourly, daily, monthly)
+
+# AWS Data Migration Service (DMS)
+- Quick, secure DB migration to AWS (self-healing, resilient)
+- Source DB remains available during migration
+- Supports homogenous or heterogenous DB migratsions
+- **Change Data Capture:** continuous data replication even with new changes
+- Hardware needed for replication tasks
+- Can deploy in multi-AZ: provisions and deploys a standby replica in another AZ with synchronous replication
+
+# AWS Schema Conversion Tool (SCT)
+- converts DB schema from one engine to another, not needed for same engine migration
+- OLTP: SQL/ORacle to MySQL/PostgreSQL/Aurora
+- OLAP: Teradata/Oracle to Redshift
+- Example: Source DB on prem -> Server SCT on Prem -> EC2 in AWS public subnet with DMS -> Target DB in AWS
+
+# RDS & Aurora Migrations
+- RDS MySQL to Aurora MySQL
+    - Snapshot and Restore: has downtime, cheaper
+    - Continuous: using DMS, create Aurora Read Replicas, promote as cluster when replication lag is zero
+- External MySQL to Aurora MySQL
+    - Percona XtraBackup export to S3, create Aurora MySQL from backup, downtime but cheaper
+    - Use mysqldump utility to migrate directly into Auror (slower than percona)
+- RDS PostgreSQL to Aurora PostgreSQL
+    - Only difference is options for external to Aurora
+    - Create backup and import to SS3, use aws_S3 Aurora extension to import
+- Always use DMS if both are running since no downtime
+
+# VM Import/Export
+- Migrates existing apps to EC2
+- Run amazon linux 2 AMI on-prem, download AMI as VM (.iso format)
+
+# AWS Application Discovery Service
+- Helps plan on-prem migration to AWS and track via AWS Migration Hub
+- Gathers information on server utilization, dependency mappings
+- Can be AWS Agentless Discovery Connector or AWS App Discovery Agent
+    - Agentless Discovery Connector:  VM inventory, config, performance, specs
+    - Agent-Based Discovery: granular information about system, processes, performance, network
+
+# AWS Migration Service (MGN)
+- incremental replication of live on-prem servers to AWS, replicates volumes directly to AWS
+- Allows for lift-and-shift which makes the process so much easier
+- AWS replication installed on source
+- Replicates enviornment to staging until cutover date where it will get created in production
+- Minimal downtime, reduced costs
+
+# AWS Backup
+- Fully managed service to manage service backups centrally with no manual scripting or processes
+- Supports volume backups, DB backups, cross-region, cross-account, PITR, on-demand, or scheduled
+- **Backup Plans:** policies for backup, frequency, windows, storage, retention etc
+- Stores in dedicated S3 bucket
+- **AWS Backup Vault Lock:** enforces WORM state for backups in vault, prevents accidental delete of backups
+
+# Large Datasets to AWS
+- To calculate time: convert data size to gigabits/megabits and divide by bandwidth/sec
+- Over Internet/S2S VPN: immediate
+- Over Direct Connect is 1GBPS, long set up time for initial setup
+- Snowball: time to order snowball, upload to snowball, send to AWS, load to AWS, 1 week process
+    - combine with DMS for newer data
+- Ongoing Replication/Transfers: S2S VPN, Direct Connect with DMS, Data Sync, Storage Gateway
+
+# VMWare Cloud on AWS
+- Migrate vSphere environment from another location to AwS
+- Allows vSphere, vSAN, VMWare NSX on AWS
