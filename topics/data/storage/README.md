@@ -1,4 +1,4 @@
-# EC2 Storage
+# Storage Options
 
 # EC2 Instance Store
 - **EC2 Instance Store:** emphemeral storage attached physically to the EC2 instance
@@ -109,3 +109,35 @@
     - network file storage, linux file system (POSIX)
     - can mount to 100s of EC2 across AZ, highly available
     - most expensive, but there are cost savings with storage tiers
+
+# AWS FSx
+- **AWS FSx:** fullly managed service that allows you to integrate 3rd party file systems to AWS
+- Support for Windows, Linux, NetApp ONTAP, or Open ZFS
+
+## AWS FSx for Windows
+- Fully managed Windows file storage that supports SMB and Windows NTFS, supports Microsoft FS structures and Namespaces
+- Security: Windows AD, Security Groups, ACL's, user quotas, VPN, Direct Connect
+- Can be multi-AZ, with daily backups to S3 for DR
+- Can be mounted on EC2 Instances (Linux or Windows)
+- Scales up to 10GBPS, millions of IOPS, stores 100PB of data
+- Options: SSD (perofrmance for DBs, analytics, media) or HDD (low cost, for home directories, content)
+
+## AWS FSx for Lustre
+- Linux-based paralle distributed file system
+- Scales up to 100s GBPS, millions of IOPS, very low latency
+- Used for: HPC, large-scale compute, ML, modeling
+- Can be deployed as Scratch FS (temporary storage) or Persistent (long-term storage)
+- Options: SSD or HDD, with network Access (VPN/Direct Connect)
+- Integrates with S3
+
+## AWS FSx for NetApp ONTAP
+- AWS managed service for NetApp ONTAP
+- Compatible with NFS, SMB, iSCSI protocal and many OS and AWS services
+- Used to move workloads from ONTAP or NAS to AWS, new worklaods
+- Auto-scaling for storage, snapshots, point-in-time instantaneous cloning
+
+## AWS FSx for OpenZFS
+- AWS managed service for OpenZFS file system with low cost
+- Compatable with NFS only and many OS and AWS services
+- Up to a million IOPS with very low latency
+- Snapshots, compression, no data de-duplication, point in time instantaneous cloning
