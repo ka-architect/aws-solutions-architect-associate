@@ -64,13 +64,13 @@
     - created in AZ (resilient within AZ, down if AZ is down), uses elastic IP
     - allows subnet to subnet communication
     - requires an internet gateway for public access, point other route tables to NAT Gateway for access only
-**NACL:** Network Access Control List, stateless subnet-level rules for in/out traffic
+- **NACL:** Network Access Control List, stateless subnet-level rules for in/out traffic
     - must explicity define in and out traffic, meaning 2 rules need to be defined, rules evaluated in order
     - remember to add **ephemeral ports** to allow response traffic (MS: 49152-65535, Linux: 32768-60999, DB: 1024-65535)
     - only one NACL per subnet, new NACL's deny everything by default, default NACL accepts everything
     - many rules can be applied and priortized, last rule is deny (AWS recommends priority in 100s to allow adding rules in the future)
-**Security Groups:** stateful resource-level rules (if 1 way allowed, response is automatically allowed), rules evaluated before hand and remembered
-**VPC Peering:** non-transtive connections between VPC's, allowed as long as no overlapping CIDRs
+- **Security Groups:** stateful resource-level rules (if 1 way allowed, response is automatically allowed), rules evaluated before hand and remembered
+- **VPC Peering:** non-transtive connections between VPC's, allowed as long as no overlapping CIDRs
     - non-transitive means must be explicity enabled on both
     - must update any route table VPC CIDRs after enabling
     - allowed cross-account/cross-region
