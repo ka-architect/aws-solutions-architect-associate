@@ -74,7 +74,7 @@
     - non-transitive means must be explicity enabled on both
     - must update any route table VPC CIDRs after enabling
     - allowed cross-account/cross-region
-**VPC Endpoints:** provide private access to public resources securely via **AWS PrivateLink (AWS private network)**
+- **VPC Endpoints:** provide private access to public resources securely via **AWS PrivateLink (AWS private network)**
     - no need for NAT Gateways, VPC peering, public internet, Route Tables, however requires ENI and NLB
     - **Gateway Endpoints:** free endpoints for public AWS services within VPC such as S3, DynamoDB, CloudFormation, SSM
     - **Interface Endpoints:** paid endpoints for all AWS services including the above (since not free, use gateway when possible)
