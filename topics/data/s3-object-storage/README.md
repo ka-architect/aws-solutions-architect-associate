@@ -166,9 +166,9 @@
 - Encyrption style determined via the header of the request
 - There are 2 types of encryption, client side and server side
 - There are different methods server side: SSE-S3, SS3-KMS, SSE-C
-- **SSE-S3:** keys are handled and managed by AWS (AES-256), default encryption in S3
-- **SSE-KMS:** keys handled and managed by AWS KMS, decryption is handled via API (counts towards quotes), performance issues with high throughput
-- **SSE-C:** keys fully managed by customers outside of AWS, key is never stored within AWS
+- **SSE-S3:** keys are handled and managed by AWS (AES-256), default encryption in S3, automatic yearly rotation without setting it
+- **SSE-KMS:** keys handled and managed by AWS KMS, decryption is handled via API (counts towards quotes), performance issues with high throughput, enable yearly rotate setting
+- **SSE-C:** keys fully managed by customers outside of AWS, key is never stored within AWS, no rotation policy
     - Must use HTTPS and pass the encryption key within the headers of the request
     - To read the files you must also provide the key
 - **Client-Side Encryption:** using client-side encyrption libraries, must send encrypted to S3, must also decrypt at client side when retreiving
@@ -220,7 +220,7 @@
 - Used when secuity via users/groups gets too complicated, allows managing security at scale
 - Has its own DNS Name for Internet Origin and VPC Origin
 - **VPC Origin:** access points that are restricted to a VPC
-    - Create a VPC endpoint to access S3 Access Point (Gateway/Interface endpoints)
+    - Create a VPC endpoint to access S3 Access Point (Gateway is free/Interface is paidendpoints)
     - Permissions need to be added for VPC endpoint to access S3 bucket
 - You can have security at 3 levels: Access Point, VPC Endpoint, S3 bucket policy
 

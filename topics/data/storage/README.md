@@ -9,7 +9,7 @@
 # Elastic Block Store (EBS)
 - **Elastic Block Storage:** network drive you can attach to EC2 while they run
 - Allows EC2 to persist data even after termination, unlike EC2 instance store
-- Limited to only one EC2 mount at a time, think of it as a network USB stick
+- Limited to only one EC2 mount at a time, think of it as a network USB stick, unless multi-attach (max 16)
 - multiple EBS volumes attached to an EC2, volumes are bound to AZ
 - by default, root EBS is deleted when EC2 terminated, can be modified
 - created volumes by default are not deleted on termination

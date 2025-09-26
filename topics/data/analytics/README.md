@@ -32,10 +32,11 @@
 
 ## Amazon EMR (Hadoop)
 - Fully managed Hadoop clusters for analyzing and processing big data
+- EMR = Elastic Map Reduce
 - Bundled with tools like Spark, HBase, Presto, Apache Flink
 - Node Types:
     - **Master Node:** cluster management, coordinates tasks, health check, long-running
-    - **Core Node:** run takss and store data - long running
+    - **Core Node:** run tasks and store data - long running
     - **Task Node:** optional run tasks - short lived
     - Best to used reserved or on-demand for master and core nodes
     - Use spot nodes for task
@@ -46,7 +47,7 @@
 - Serverless, ML powered, BI service used to create interactive dashboards
 - Fast, autoscaling, embeddable, pay per session pricing
 - **SPICE Engine:** in-memory computation for data imported directly to QS
-- Security: Users and groups can be created (not in IAM), uses column-level security to grant access, can publish data to certain users/groups
+- Security: Users and groups can be created (separate in IAM), uses column-level security to grant access, can publish data to certain users/groups
 
 ## AWS Glue (ETL)
 - Fully managed and serverless service used for ETL data for analytics

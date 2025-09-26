@@ -16,12 +16,13 @@
 - Supports read replicas, and multi AZ
 - RDS Proxy for connection pooling, RDS Custom for Oracle and MSSQL (access to underlying hardware)
 - Used For: SQL, OLTP, relational data
+- cannot encrypt a DB after creation, must encrypt a new DB or restore encrypted snapshot
 
 ## Aurora
 - Compatible API for PostgreSQL and MySQL, separates storage and compute
 - Cluster: endpoints for writers and readers
 - Backups on S3 either MySQL backup or PerconaXtra Backup, Restore is PITR
-- Aurora Global DB, Aurora Serverless, Aurora DB Cloning
+- Aurora Global DB, Aurora Serverless, Aurora DB Cloning (quick creation of test DB from production DB)
 
 ## ElastiCache
 - Managed Redis or Memcached, in memory store for reading data
