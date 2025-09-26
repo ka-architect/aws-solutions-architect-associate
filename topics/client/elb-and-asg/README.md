@@ -93,6 +93,13 @@
 
 ## Attributes
 - **Launch Template:** information on how to launch EC2 within your ASG (AMI, Type, Storage, Security, network, etc.)
+    - Allows to edit and update, maintains versions
+    - Can use T2 unlimited burst feature.
+    - Allow provisioning using both On-demand and Spot Instances.
+    - Creation of parameter subsets.(Partial configuration for reuse and inheritance)
+    - Can also be used to launch a standalone instance using AWS Console, SDK and CLI.
+- **Launch Configuration (Legacy):** must be recreated every time because modification is not allowed.
+- Launch Template recommended By AWS
 - Minimum Size, Desired (Scale In), Max (Scale Out), Initial
 
 ## Scaling Policies
