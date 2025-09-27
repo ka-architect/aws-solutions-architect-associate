@@ -28,6 +28,7 @@
 ## Tape Gateway
 - Physical tape storage backup support via iSCSI interface
 - Can be backed up to S3 and S3 Glacier
+- Doesn’t maintain a local cache
 
 # AWS Transfer Family
 - Fully managed service for FTP transfer to EFS or S3
@@ -41,6 +42,7 @@
 - Can sync to all storage classes of S3 including Glacier, EFS, and FSx (but not EBS)
 - Requires high network capacity otherwise use snowball
 - Its not continous so it needs to be scheduled (hourly, daily, monthly)
+- Does not offer local caching for low-latency access to recently accessed files
 
 # AWS Data Migration Service (DMS)
 - Quick, secure DB migration to AWS (self-healing, resilient)

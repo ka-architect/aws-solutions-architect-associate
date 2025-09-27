@@ -1,6 +1,5 @@
 # Monitoring
 
-
 # CloudWatch
 - Metrics are provided for every service in AWS
 - Dashboarding and custom metric features
@@ -20,6 +19,7 @@
     - Alarm Targets: ASG (scaling process), EC2 (stop/restart/etc.), or SNS (custom)
 - **Composite Alarms:** alarms triggered on multiple metrics, more specific/complex means less noise, chained together with AND/OR
 - **EC2 Instance Recovery:** guarantees alarm actions will maintain EC2 settings
+- Can’t directly set CloudWatch Alarms to update the ECS task count
 
 ## CloudWatch Insights:**
 - **CloudWatch Container Insights:** tool for dashboarding container metrics, runs as an agent in the container
@@ -35,6 +35,7 @@
 - Replay feature
 - **Schema Registry:** structures data in bus which allows you to generate code, helps analyze events in bus, allows versioning
 - Resource Based Policy: manage permission for an event bus, used when having a centralized event bus across the organization
+- Use Amazon EventBridge (Amazon CloudWatch Events) to run Amazon ECS tasks when certain AWS events occur (like S3 PUT)
 
 # CloudTrail
 - Logs all API calls made by all services

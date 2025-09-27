@@ -67,6 +67,9 @@
 - Built on top of AWS Glue, out-of-the-box blueprints for AWS services and on prem databases
 - Fine grain access control for access to data via applications (row/column level security)
 - Centralized permissions - so many sources with different permissions
+- Cross-account sharing is free with AWS Lake Formation
+- S3 is the storage layer for Lake Formation
+- You can registering existing S3 buckets that contain your data, creates new buckets for the data lake and imports data into them
 
 ## Apache Flink
 - Fully managed service that allows you to run Flink on a managed cluster
@@ -92,4 +95,3 @@
 
 ## Serverless Ingestion Pipeline Example
 Source -> KDS -> Firehose -> S3 -> Lambda -> Athena -> S3 -> Redshift -> QuickSight Dashboard
-

@@ -13,6 +13,12 @@
 - If high memory/long execution time/big file storage, dont use lambda
 - Can be launched in both public and private VPCs
 
+## Lambda Environment Variables
+- When you creating/updating Lambda function environment variables, encyrpted with KMS, decrypted at invoke
+- First time creation/update of Lambda function environment variables in a region, default service key is created within AWS KMS to encrypt variables.
+- To use encryption helpers after Lambda function is created, must create own KMS key instead of defualt, default key will give errors when chosen
+- Creating your own key gives more flexibility, including the ability to create, rotate, disable, and define access controls, and to audit the keys
+
 ## Lambda Limits
 - Limits per region: execution (memory, time, variables, disk, concurrency), deployment (size, variables)
 - Concurrency Limits: 1000 concurrent executions can reserve concurrency at function level 

@@ -14,6 +14,8 @@
     - **Single Instance:** dev purposes, limited scale
     - **HA with LB:** production, bigger scale
 - Uses CloudFormation to orchestrate the build
+- Reduces management complexity without restricting choice or control
+- Simply upload the application, and Beanstalk handles capacity, load balancing, scaling, and health monitoring
 
 # Cloud Formation
 - Deploy and manage infra at scale, using YAML/JSON to define resource information
@@ -86,3 +88,8 @@
 
 # AWS Workspaces
 - Allows you to create the virtual desktops in your VPC
+
+#  AWS Artifact
+- Central resource for compliance-related information, reports, and agreements
+- Provides on-demand access to AWS’ security and compliance reports and select online agreements
+- All AWS Accounts have access to AWS Artifact via root users and IAM users with admin permissions

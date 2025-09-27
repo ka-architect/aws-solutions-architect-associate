@@ -110,6 +110,12 @@
 - **Predictive Scaling:** forecast load and schedule scaling ahead of time
 - Metrics for scaling: CPU, request count per target, average network in/out, custom metrics within CloudWatch (Queue Depth)
 
+## Default Termination Policy
+- Choose the AZ with the most instances and at least one instance that is not protected from scale in
+- If more than one AZ with same number of instances, choose the AZ with instances with oldest launch template
+- If multiple instances with oldest launch template, choose closest to the next billing hour to terminate
+- If multiple instances closest to the next billing hour, choose one of then at random
+
 ## Scaling Cooldowns
 - **Scaling Cooldown:** configurable time period after a scaling action occurs (default 300 sec)
 - During cooldown, ASG will not modify underlying servers to provide a baseline of performance for next action

@@ -131,7 +131,7 @@
 - Integrates with S3
 
 ## AWS FSx for NetApp ONTAP
-- AWS managed service for NetApp ONTAP
+- AWS managed service for high-performance, scalable file storage based on NetApp ONTAP file system
 - Compatible with NFS, SMB, iSCSI protocal and many OS and AWS services
 - Used to move workloads from ONTAP or NAS to AWS, new worklaods
 - Auto-scaling for storage, snapshots, point-in-time instantaneous cloning

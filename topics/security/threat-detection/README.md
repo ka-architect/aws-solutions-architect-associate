@@ -6,6 +6,7 @@
 - Cannot be deployed on NLB (Layer 4)
 - Define ACL's: IP Set, HTTP Headers, size, location, rate
 - Rule Group: reusable set of rules added to ACL
+- **Rate-based rules:** track the rate of requests for each IP address, triggers rule action on bad IP's
 - WAF & ALB: since ALB doesn't have static IP enable Global Acclerator to get fixed IP Pair, set up WAF in same region as ALB
 
 # AWS Shield and AWS Shield Advanced
