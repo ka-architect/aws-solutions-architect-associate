@@ -58,6 +58,7 @@
     - health check controls: number of fail checks before failover, interval of health checks, can be inverted
     - **Calculated Health Check:** combine multiple health checks to determine the health, specify conditions and priority of conditions, up to 256 requests
     - cannot access private hosted zone since R53 is outside of the VPC, use cloudwatch metric instead
+    - Active-Active failover uses all available resources all the time
 - **Latency-Based Routing Policy:** redirect to least latent resource based on traffic between users and regions
 - **Geolocation Routing Policy:** define redirect to nearest resource based on users location, not latency, needs a default record in case of no match, can use health checks
 - **Multi-Value Answer Routing Policy:** helps redirect traffic up to 8 multiple resources, not an LB since its client side

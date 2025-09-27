@@ -104,7 +104,7 @@
 
 ## Scaling Policies
 - **Dynamic Scaliing Policies:** scaling based on dynamic situations
-    - **Target Tracking Scaling:** simple metric such as CPU
+    - **Target Tracking Scaling:** triggered via simple metric such as CPU
     - **Simple/Step Scaling:** triggered via CloudWatch alerts
 - **Scheduled Scaling:** scaling based on predictable patterns
 - **Predictive Scaling:** forecast load and schedule scaling ahead of time

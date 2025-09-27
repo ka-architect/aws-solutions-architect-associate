@@ -25,3 +25,6 @@
 - ACM & LBs: can provision and maintain ALB certs, enables http to https redirect
 - ACM & API GW: depends on endpoint type, create domain name in API Gateway, store cert location (edge endpoint: us-east-1, regional: same region as gateway)
     - setup CNAME/A-ALIAS record in R53 based on region
+
+# IAM Certificate Manager
+- If ACM is not available in your region, use AWS CLI to upload your third-party certificate to the IAM certificate store.

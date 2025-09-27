@@ -55,6 +55,12 @@
 - Containers have a Container Storage Interface which is used to connect to storages, storage type needs to be defined on EKS cluster
 - Supports: EBS (EC2 only), EFS, FSx (lustre, ontap)
 
+## EKS Auto Scaling
+- The Kubernetes Horizontal Pod Autoscaler automatically scales the number of Pods in a deployment, replication controller, or replica set based on resource’s CPU utilization
+- When you set a target CPU utilization percentage, the Horizontal Pod Autoscaler scales your application in or out to try to meet that target
+- **Karpenter:** flexible, high-performance Kubernetes cluster autoscaler that launches appropriately sized compute resources to precisely match workload requirements
+– **Cluster Autoscaler:** automatically adjusts the number of nodes in your cluster when pods fail or are rescheduled onto other nodes using Auto Scaling groups
+
 # AWS App Runner
 - Managed service that deploys apps and APIs at scale
 - Start with code or container, specify options for hardware and deploy

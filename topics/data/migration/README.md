@@ -38,7 +38,7 @@
 # AWS Data Sync
 - Agent that runs on prem/other cloud to replicate data to AWS over network
 - No agent needed if AWS to AWS transfer
-- Can sync to all storage classes of S3, EFS, and FSx (but not EBS)
+- Can sync to all storage classes of S3 including Glacier, EFS, and FSx (but not EBS)
 - Requires high network capacity otherwise use snowball
 - Its not continous so it needs to be scheduled (hourly, daily, monthly)
 

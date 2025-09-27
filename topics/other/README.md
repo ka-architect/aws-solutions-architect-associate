@@ -79,3 +79,10 @@
 - Ability to stop/start instances providing cost reduction for unused instances
 - Can be used to shut down all instances that are not used during off-business hours
 - Schedules managed in DynamoDB
+
+# AWS ParallelCluster
+- AWS-supported open-source cluster management tool to deploy and manage High-Performance Computing (HPC) clusters on AWS
+- Uses a simple text file to model and provision resources for HPC apps through secure automation
+
+# AWS Workspaces
+- Allows you to create the virtual desktops in your VPC

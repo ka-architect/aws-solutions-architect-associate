@@ -36,3 +36,15 @@
 - Replication: RDS replication cross-region, Aurora Global DB, Dynamo Global Tables, storage gateway on prem
 - Automation: elastic beanstalk to deploy, CloudWatch Instance Recovery/Reboot if alarms fail, AWS Lambda
 - Chaos Testing: randomly invoke disasters in your environment, random terminations
+
+## AWS Elastic Disaster Recovery (AWS DRS)
+- provides continuous block-level replication, recovery orchestration, and automated server conversion capabilities
+- crash-consistent recovery point objective (RPO) of seconds, and a recovery time objective (RTO) typically ranging between 5–20 minutes
+- Performs failover to AWS for immediate recovery but then failback to the original source infrastructure is necessary
+- To complete the failback, the AWS Elastic Disaster Recovery Failback Client is installed on the target server, and specific credentials are generated
+- Recovery instances are launched in AWS from a snapshot. 
+- Cross-Region or cross-AZ failover and failback can be executed from the AWS DRS Console
+- Once failback is finished, the recovery instance can be terminated, deleted, or disconnected
+- To establish a secure data replication process, configure AWS Elastic Disaster Recovery on your source servers
+- Replicates data to a dedicated subnet within your AWS account located in the AWS Region of your choice by utilizing a staging area design
+- Optimizes cost-efficiency with cost-effective storage and low compute resources for continuous replication

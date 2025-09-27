@@ -20,7 +20,8 @@
 - Cluster Setup
     - Leader Node: for query planning and results aggregation
     - Compute Node: runs query and sends results to leader
-- Snapshots and multi-AZ
+- Snapshots and multi-AZ, can copy snapshots to another region
+- **Cross-Region Copy:** enable feature for each cluster and configure backup location and retention, all new snapshots are then copied to the specified region.
 - Redshift Ingestion: KDF (via S3 copy), Manual S3 copy, or Batch JDBC on EC2
 - **Redshift Spectrum:** Analyze data in S3 without loading into Redshift by using cluster leader, more processing power and no time to load into Redshift
 
@@ -31,7 +32,7 @@
 - Can stream from DynamoDB, KDS, Neptune, to search for the action and then you can query the DB
 
 ## Amazon EMR (Hadoop)
-- Fully managed Hadoop clusters for analyzing and processing big data
+- Fully managed Hadoop clusters for analyzing and processing big data and store 
 - EMR = Elastic Map Reduce
 - Bundled with tools like Spark, HBase, Presto, Apache Flink
 - Node Types:
@@ -41,6 +42,7 @@
     - Best to used reserved or on-demand for master and core nodes
     - Use spot nodes for task
 - Cluster Types: long-running or **transient** (tear down after analysis)
+- Used to transform and move large amounts of data into and out of other AWS stores such as S3 and DynamoDB
 
 ## QuickSight (Tableau)
 - Similar to tableau or power BI

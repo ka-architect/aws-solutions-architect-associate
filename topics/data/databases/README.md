@@ -17,6 +17,7 @@
 - RDS Proxy for connection pooling, RDS Custom for Oracle and MSSQL (access to underlying hardware)
 - Used For: SQL, OLTP, relational data
 - cannot encrypt a DB after creation, must encrypt a new DB or restore encrypted snapshot
+- Auto-failover by flipping the canonical name record (CNAME) from primary to standby, then standby promoted to primary
 
 ## Aurora
 - Compatible API for PostgreSQL and MySQL, separates storage and compute

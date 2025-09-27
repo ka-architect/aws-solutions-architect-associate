@@ -115,8 +115,8 @@
 
 ## Launch Templates
 - Choose between commonly used requests or manually configure launch pattern with launch parameters
-- Define how an EC2 is created
 - Launch Parameters: AMI, Key-Pair, Rols, Max Price (Spot), Duration, Load Balancing, Capacity, System Specs, Network
+- Define how an EC2 is created and cannot be modified once created (need to create a new one when changing any parameters)
 
 ## Public vs Private vs Elastic IP
 - **Public IP:** accessible to public over internet, comes with EC2 (changes on restart)

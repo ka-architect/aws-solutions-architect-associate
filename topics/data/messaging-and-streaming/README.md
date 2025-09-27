@@ -59,11 +59,12 @@
 # Kinesis Data Streams (KDS)
 - **Kinesis Data Streams:** streaming model, collect and store streaming data in real-time
 - Consumers can be applications, lamdbas, or other AWS services
-- 365 day message retention, peristent for replay, 1MB max data size (real time data is usually very small)
+- default 24 hour retention, up to 365 day message retention wgeb set, peristent for replay, 1MB max data size (real time data is usually very small)
 - Paritionining maintains order with PartitionID included in data
 - Capacity modes: provisioned or on-demand
     - **Provisioned:** choose number of shards (how big a stream is), pay per shard per hour, more shards more throughput, default
     - **On-Demand:** no need to provision or manage capacity, scales automatically based on 30 day peak, pay per stream per hour and per GB data in/out
+- Consumers can be EC2 or Firehose and can store their results in DynamoDB, Redshift, or S3
 
 # Kinesis Data Firehose (KDF)
 - Fully managed service that loads streaming data near real time to a service 
@@ -97,7 +98,7 @@
     - enhanced fan out model
     - ability to replay data due to peristence
     - meant for realtime data
-    - ordering at shard level
+    - ordering at shard level via partitioning
     - data expiration
     - provisioned (manual shard) or on-demand capacity (auto shard)
 

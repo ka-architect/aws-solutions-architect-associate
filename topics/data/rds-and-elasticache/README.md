@@ -5,6 +5,9 @@
 - create managed DB in AWS: PostgreSQL, MySQL, MariaDB, Oracle, MSSQL, IBM DB2, AuroraDB
 - No SSH access since its a managed service
 - Hosted on EC2 instances, optimized for DB loads
+- To force SSL on RDS:
+    - Enable ``use rds.force_ssl`` setting
+    - Import the Amazon RDS Root CA certificate to your servers and configure your application to use SSL to RDS
 
 ## RDS - Storage Auto Scaling
 - Increases storage dynamically when RDS detects space issue based on maximum storage threshold

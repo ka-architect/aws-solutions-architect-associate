@@ -84,6 +84,7 @@
     - **Instant Retrieval** backup access within ms (once per quarter data), minimum 90 day storage
     - **Flexible Retrieval** 3 options for retrieval, 90 day storage minimum
         - Expedited: 1-5 min, Standard: 3-5 hours, Bulk: 5-12 hours and free
+        - **Provisioned Capacity:** ensures that retrieval capacity for Expedited retrievals is available when you need it (150 MBPS)
 - **S3 Glacier Deep Archive** long term storage, minimum 180 days, lowest cost
 - **S3 Intelligent Tiering**
     - monthly monitoring and tiering fee, no retrieval charges

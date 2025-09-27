@@ -8,6 +8,7 @@
 - Pay for cost of data out per edge location, different prices for different locations
 - Can reduce costs by reducing edge locations or price classes: Price Class All, Price Class 200 (most regions), Price Class 100 (least expensive regions)
 - Cache Invalidation can be done via TTL expiry or bypassing with CloudFront Invalidation, can be all files or specific files
+- You can upload certificates but you cannot force SSL on CloudFront
 
 ## CloudFront Origins
 - CloudFront can support public AWS origins, VPC origins, or custom origins
@@ -19,6 +20,10 @@
 ## CloudFront vs S3 Cross Replication
 - CloudFront is a cache using global edge network, can display private files without making them public
 - S3 cross replication is regional, file access is not cached but real-time, and read only
+
+## CloudFront Private Resource Access
+- **CloudFront Signed URL:**  Used when you want to restrict access to files, use an RTMP distribution, or when a client doesn't support cookies
+- **CloudFront Signed Cookies:** Used to provide access to multiple restricted files, and when you don’t want to change your current URLs.
 
 ## VPC Origin
 - Used for delivering content from private-subnet resources without making them public subnet
