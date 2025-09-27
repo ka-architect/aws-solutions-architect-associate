@@ -93,3 +93,14 @@
 - Central resource for compliance-related information, reports, and agreements
 - Provides on-demand access to AWS’ security and compliance reports and select online agreements
 - All AWS Accounts have access to AWS Artifact via root users and IAM users with admin permissions
+
+# Amazon Simple Workflow Service (SWF)
+- Web service that makes it easy to coordinate work across distributed application components
+- Use with SQS for decoupling on-prem/cloud applications
+
+# AWS Security Token Service (STS)
+- Service that you can use to create and provide trusted users with temporary security credentials that can control access to your AWS resources
+
+# Billing and Cost Management Console
+- Generate a cost allocation report based on usage and costs grouped by your active tags
+- **Cost Allocation Tags:** Tags that are used to organize your resources and cost allocation tags to track your AWS costs on a detailed level

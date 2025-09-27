@@ -66,6 +66,8 @@
 - **EKS nodes:** connects to the cluster’s control plane via the API server endpoint
 - EKS cluster uses IAM / OIDC for authentication and Kubernetes RBAC for authorization
 - By default, cluster control plane logs aren’t sent to CloudWatch Logs, enable each log type individually
+- EKS stores data unencrypted in etcd which may include secrets, intregrates with KMS to encrypted that data
+    - AWS KMS key created just for EKS cluster, then encrypts data before saved in etcd at rest
 
 ## EKS Auto Scaling
 - The Kubernetes Horizontal Pod Autoscaler automatically scales the number of Pods in a deployment, replication controller, or replica set based on resource’s CPU utilization

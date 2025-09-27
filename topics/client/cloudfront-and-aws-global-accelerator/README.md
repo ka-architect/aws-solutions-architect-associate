@@ -9,6 +9,9 @@
 - Can reduce costs by reducing edge locations or price classes: Price Class All, Price Class 200 (most regions), Price Class 100 (least expensive regions)
 - Cache Invalidation can be done via TTL expiry or bypassing with CloudFront Invalidation, can be all files or specific files
 - You can upload certificates but you cannot force SSL on CloudFront
+- Optimized for both dynamic and static content with optimized cache behavior, latency, and throughput
+- **Field-Level Encryption:** securely upload sensitive data (credit card numbers) to your origin
+- **Origin Access Control (OAC):** restrict access to S3 bucket from CloudFront, without making S3 public
 
 ## CloudFront Origins
 - CloudFront can support public AWS origins, VPC origins, or custom origins
@@ -16,6 +19,7 @@
 - S3 is a public AWS origin, combined with CloudFront can be used to upload and distribute files in buckets, S3 static websites
 - Apps hosted in private subnet within VPCs can connect to CloudFront privately
 - Any public HTTP endpoint can connect to cloudfront
+- **Origin Failover:** ability to set up multiple origins for redundancy, must have a distribution with primary
 
 ## CloudFront vs S3 Cross Replication
 - CloudFront is a cache using global edge network, can display private files without making them public

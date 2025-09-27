@@ -118,5 +118,5 @@
 
 ## Scaling Cooldowns
 - **Scaling Cooldown:** configurable time period after a scaling action occurs (default 300 sec)
-- During cooldown, ASG will not modify underlying servers to provide a baseline of performance for next action
+- During cooldown, ASG will not launch or terminate underlying servers to provide a baseline of performance before next action
 - Tip: Reduce EC2 instance boot times with AMI's

@@ -25,6 +25,13 @@
 - **EBS Recycle Bin:** set up rules to retain deleted snapshots to recover from accidental deletion
 - **Fast Snapshot Restore:** force full initialize of snapshot to have no latency on first restore, expensive, used for big data that needs to be restored quickly
 
+## Amazon Data Lifecycle Manager (DLM) 
+- Automate the creation, retention, and deletion of EBS snapshots
+- Can define policies that govern the lifecycle of these snapshots, ensuring regular backups are created and obsolete snapshots are automatically removed
+– Protect valuable data by enforcing a regular backup schedule
+– Retain backups as required by auditors or internal compliance
+– Reduce storage costs by deleting outdated backups
+
 ## EBS Volume Types
 - There are 6 types of volumes
     1) **GP2:** SSD, general purpose, price and performance balance, wide variety of workloads

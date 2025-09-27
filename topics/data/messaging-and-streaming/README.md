@@ -15,6 +15,8 @@
 - Supports in-flight (HTTPS) and at-rest (KMS) encryption
 - Access controlled via IAM and resource policies
 - 256KB max message size
+- You can set priority to a queue, but cannot set priority to items in the queue
+- For decoupling on-prem/cloud use SQS and Amazon Simple Workflow Service (SWF) together
 
 ## Message Visibiility Timeout
 - **Invisible Message:** when message is polled by consumer it becomes invisible to other consumers (for a duration)
