@@ -43,7 +43,7 @@
 - Can be both public and private, protected by IAM (EC2 needs to be able to pull image from ECR)
 - Supports vulnerability scans, versioning, tags, lifecycle, etc.
 
-# Elastic Kubernetes Service
+# Elastic Kubernetes Service (EKS)
 - EKS: launch and manages kubernets clusters in AWS
 - Kubernetes: cloud-agnostic, open source, deployment, management, and scaling of containers
 - Manages health checks, failovers, pods/clusters
@@ -55,11 +55,36 @@
 - Containers have a Container Storage Interface which is used to connect to storages, storage type needs to be defined on EKS cluster
 - Supports: EBS (EC2 only), EFS, FSx (lustre, ontap)
 
+## EKS Cluster
+- Cluster made up of two main components: EKS control plane and EKS Nodes
+- Each cluster is single-tenant and unique, and runs on its own set of EC2 instances
+- A cluster consists of one or more EC2 nodes on which pods are scheduled
+- **EKS Control Plane:**
+    - Made up of nodes that run the Kubernetes software (API server & etcd)
+    - Provisioned across multiple AZs with NLB
+    - Use AWS KMS to encrypt data stored by etcd nodes and associated EBS volumes
+- **EKS nodes:** connects to the cluster’s control plane via the API server endpoint
+- EKS cluster uses IAM / OIDC for authentication and Kubernetes RBAC for authorization
+- By default, cluster control plane logs aren’t sent to CloudWatch Logs, enable each log type individually
+
 ## EKS Auto Scaling
 - The Kubernetes Horizontal Pod Autoscaler automatically scales the number of Pods in a deployment, replication controller, or replica set based on resource’s CPU utilization
 - When you set a target CPU utilization percentage, the Horizontal Pod Autoscaler scales your application in or out to try to meet that target
 - **Karpenter:** flexible, high-performance Kubernetes cluster autoscaler that launches appropriately sized compute resources to precisely match workload requirements
 – **Cluster Autoscaler:** automatically adjusts the number of nodes in your cluster when pods fail or are rescheduled onto other nodes using Auto Scaling groups
+
+## EKS Storage
+- **Container Storage Interface (CSI):** enable third-party storage providers to deploy plugins, alternative storage systems without modifying Kubernetes code
+- **EBS CSI Driver:** enables persistent EBS volumes for EKS clusters, volumes cannot be mounted to Fargate pods.
+- **EFS CSI Driver:** enables EFS storage for EKS clusters, not compatible with Windows containers
+- **Amazon FSx for Lustre CSI Driver:** enables FSx luste storage for EKS, not supported by Fargate
+- **Amazon FSx for NetApp ONTAP CSI Driver:** storage service for fully-managed ONTAP storage
+
+## EKS Monitoring
+- EKS control plane logging provides audit and diagnostic logs directly to Amazon CloudWatch Logs
+- Logs are sent as log streams to a group in CloudWatch for each EKS cluster
+- Integrates with AWS CloudTrail, and all API calls are recorded as events.
+- All events and log entries include user i
 
 # AWS App Runner
 - Managed service that deploys apps and APIs at scale
