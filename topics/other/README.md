@@ -104,3 +104,7 @@
 # Billing and Cost Management Console
 - Generate a cost allocation report based on usage and costs grouped by your active tags
 - **Cost Allocation Tags:** Tags that are used to organize your resources and cost allocation tags to track your AWS costs on a detailed level
+
+# AWS Wavelength
+- service that allows developers to create mobile applications with ultra-low latencies
+- Wavelength Zones can be used to extend an Amazon VPC in order to run ultra-low latency applications that use the same AWS services, APIs, tools, and functionalities
