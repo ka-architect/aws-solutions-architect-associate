@@ -90,6 +90,6 @@
 - **Cognito:** serverless, managed authorization service that gives users an identity to interact with application
 - **Cognito User Pool:** cognito service for user sign ups for authorization, username password email phone mfa
     - can be federated with google, apple, facebook etc.
-- **Cognito Identity Pool:** provide temporary AWS credentials to access AWS resources, uses User Pools as Identity Provider
+- **Cognito Identity Pool:** provide temporary AWS credentials to access AWS resources, uses User Pools as Identity Provider (federated access)
 - Cognito to be used for web application users outside of AWS
 - Exam Tip: think Cognito when you see hundreds of users, SAML or Mobile users questions

@@ -73,7 +73,7 @@
 - The Kubernetes Horizontal Pod Autoscaler automatically scales the number of Pods in a deployment, replication controller, or replica set based on resource’s CPU utilization
 - When you set a target CPU utilization percentage, the Horizontal Pod Autoscaler scales your application in or out to try to meet that target
 - **Karpenter:** flexible, high-performance Kubernetes cluster autoscaler that launches appropriately sized compute resources to precisely match workload requirements
-– **Cluster Autoscaler:** automatically adjusts the number of nodes in your cluster when pods fail or are rescheduled onto other nodes using Auto Scaling groups
+- **Cluster Autoscaler:** automatically adjusts the number of nodes in your cluster when pods fail or are rescheduled onto other nodes using Auto Scaling groups
 
 ## EKS Storage
 - **Container Storage Interface (CSI):** enable third-party storage providers to deploy plugins, alternative storage systems without modifying Kubernetes code

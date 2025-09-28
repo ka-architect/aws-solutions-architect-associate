@@ -28,9 +28,9 @@
 ## Amazon Data Lifecycle Manager (DLM) 
 - Automate the creation, retention, and deletion of EBS snapshots
 - Can define policies that govern the lifecycle of these snapshots, ensuring regular backups are created and obsolete snapshots are automatically removed
-– Protect valuable data by enforcing a regular backup schedule
-– Retain backups as required by auditors or internal compliance
-– Reduce storage costs by deleting outdated backups
+- Protect valuable data by enforcing a regular backup schedule
+- Retain backups as required by auditors or internal compliance
+- Reduce storage costs by deleting outdated backups
 
 ## EBS Volume Types
 - There are 6 types of volumes
@@ -112,7 +112,7 @@
     - GP2: IOPS increases if disk size increases, GP3/IO1: can increase IOPS independently
     - To migrate data you need to take snapshot and restore to another volume
     - Root EBS (gp2,gp3,io1,io2) deleted on termination by default, created EBS does not delete by default
-- EC2:
+- EFS:
     - network file storage, linux file system (POSIX)
     - can mount to 100s of EC2 across AZ, highly available
     - most expensive, but there are cost savings with storage tiers

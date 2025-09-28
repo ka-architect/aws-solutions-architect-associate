@@ -21,7 +21,7 @@
 - Needs permission to write to S3
 
 ## Volume Gateway
-- Block storage, iSCSI protocol, backed by S3, to back up volumes of on-prem storage
+- Block storage, iSCSI protocol, backed by S3 any class, to back up volumes of on-prem storage
 - iSCSI protocol to transfer -> volume gateway -> store as EBS snapshots on S3
 - 2 Types: Cached (low latency access to recent data) or Stored Volumes (backup on-prem to S3)
 
