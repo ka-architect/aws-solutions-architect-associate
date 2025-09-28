@@ -21,7 +21,7 @@
 - **EC2 Instance Recovery:** guarantees alarm actions will maintain EC2 settings
 - Can’t directly set CloudWatch Alarms to update the ECS task count
 
-## CloudWatch Insights:**
+## CloudWatch Insights:
 - **CloudWatch Container Insights:** tool for dashboarding container metrics, runs as an agent in the container
 - **CloudWatch Lambda Insights:** monitor and debug solutions for lambda, provided as a lambda layer
 - **CloudWatch Contributor Insights:** analyze log data and create time series for top N contributor data
