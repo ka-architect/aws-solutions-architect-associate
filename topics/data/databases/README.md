@@ -164,8 +164,8 @@
 - can be used with elasticache, DAX is better for individual objects cache, query and scan cache
 
 ## Dynamo DB Streams
-- store ordered stream of all table actions in real time with 24 hour retention, limited consumers, can be processed via lambda/KDF
-- KDF streams has 1 year retention, more consumers and more processing
+- store ordered stream of all table actions in real time with 24 hour retention, limited consumers, can be processed via lambda/KDS
+- KDS streams has 1 year retention, more consumers and more processing
 
 # S3
 - Serverless, infinite scaling, 5TB max file size, allows versioning
