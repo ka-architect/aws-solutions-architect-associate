@@ -20,7 +20,7 @@
 - Cluster Setup
     - Leader Node: for query planning and results aggregation
     - Compute Node: runs query and sends results to leader
-- Snapshots and multi-AZ, can copy snapshots to another region
+- Snapshots and multi-AZ, can copy snapshots to another region, enabled within the cluster
 - **Cross-Region Copy:** enable feature for each cluster and configure backup location and retention, all new snapshots are then copied to the specified region.
 - Redshift Ingestion: KDF (via S3 copy), Manual S3 copy, or Batch JDBC on EC2
 - **Redshift Spectrum:** Analyze data in S3 without loading into Redshift by using cluster leader, more processing power and no time to load into Redshift

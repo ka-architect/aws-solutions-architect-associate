@@ -163,6 +163,12 @@
 - RAM is preserved and written to EBS storage (root EBS must be encrypted)
 - Faster startup
 - Use cases: services that take long to initialize, long-running processing, RAM state needs to be saved
+- Not possible to enable or disable hibernation for an instance after it has been launched
+
+## EC2 Stop Notes
+- Only EBS-backed instances can be stopped and restarted, an instance store-backed instance can only be rebooted or terminated
+- An EC2 instance has an underlying physical host computer, when stopped AWS moves instance to new host
+- Elastic IP address is detached from EC2-Classic, Elastic IP stays if EC2-VPC instance
 
 ## Amazon Machine Image (AMI)
 - **Amazon Machine Image (AMI):** pre-packaged customization of the EC2 instance, can be saved and used by multiple instances to reduce boot time

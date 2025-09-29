@@ -22,12 +22,18 @@
 - Each EC2 must be running the ECS agent and be registered to an ECS cluster
 - EC2 Instance Profile: IAM role used by ECS Agent to make calls to ECS, CloudWatch, ECR API's
 
-## ECS - Fargate Launch Type
-- ECS cluster made up of Fargate serverless instances
-- No need to provision ahead of time, much easier to manage
+## ECS - Fargate Launch Type (Not Fully Serverless)
+- ECS cluster made up of EC2-Fargate, not fully serverless instances, but not managed
 - Managed via task definitions, tasks are run based on CPU/RAM needed
 - Can scale quickly by increasing the task count instead of more EC2 servers
 - **ECS Task Role:** allows each task to have a specific role, maintains task based permissions which are defined in task definitions
+
+## ECS - Lambda (Serverless)
+- Lambda with Container Image Support is a fully managed, serverless
+- Allows custom runtimes or include dependencies that are difficult to manage in a traditional Lambda function deployment
+- Can be up to 10 GB in size, supporting large/complex apps
+- Ephemeral Storage, default 512 MB, up to 10 GB of storage
+- Auto-scaling, billed for compute time, no charges for idle time
 
 ## ECS Integrations
 - ALB: can front traffic with ECS cluster of EC2/Fargate instances

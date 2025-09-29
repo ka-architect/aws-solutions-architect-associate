@@ -21,6 +21,10 @@
 - Deploy and manage infra at scale, using YAML/JSON to define resource information
 - **Infrastructure Composer:** visualtion of CloudFormation teamplace, resources, and relations
 - Create IAM roles for service to create, update, delete resources (using ``iam:PassRole``)
+- Attributes of CloudFormation:
+    - ``CreationPolicy``: prevent status from reaching create complete until ``cfn-signal`` received or timeout, ensures resources properly running before stack creation
+    - ``DependsOn``: send a success signal after the applications are installed and configured using the ``cfn-init`` helper script
+    - ``UpdatePolicy``: send a success signal after the applications are installed and configured using ``cfn-signal``, used for updating resources and for stack update rollback 
 
 # AWS Simple Email Server (SES)
 - Fully managed service to securely send emails globally at scale
@@ -108,3 +112,10 @@
 # AWS Wavelength
 - service that allows developers to create mobile applications with ultra-low latencies
 - Wavelength Zones can be used to extend an Amazon VPC in order to run ultra-low latency applications that use the same AWS services, APIs, tools, and functionalities
+
+# AWS Service Health Dashboard
+- Shows public events that may affect several customers in particular regions (not how specific events impacted individual AWS accounts)
+
+# AWS Personal Health Dashboard
+- Ongoing visibility into your resource performance and the availability of your AWS services and accounts (updates/outages)
+- Use EventBridge rules to detect and take action specified in a rule (Send emails for upcoming patches to EC2)

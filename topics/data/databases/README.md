@@ -27,11 +27,14 @@
     - Import the Amazon RDS Root CA certificate to your servers and configure your application to use SSL to RDS
 - RDS event subscriptions typically notify operational changes not INSERT, DELETE, or UPDATE changes
 - **Enhanced Monitoring:** powerful feature that provides detailed metrics in real-time about the operating system (OS)
+    - RDS child processes, RDS processes, and OS processes
+- RDS Metrics in CloudWatch: CPU Utilization, Database Connections, and Freeable Memory
 
 ## RDS - Storage Auto Scaling
-- Increases storage dynamically when RDS detects space issue based on maximum storage threshold
+- Increases storage dynamically when RDS detects space issue based on maximum storage threshold, zero downtime
 - **Maximum Storage Threshold:** DB scaling begins when threshold hit for 5 minutes straight (with 6 hours since last modification)
 - Supports all RDS DB's, good for unpredicatble workloads
+- Can be enabled at any time
 
 ## RDS Read Replicas (Readers)
 - Read-scalability within an AZ, cross-AZ, or cross-region

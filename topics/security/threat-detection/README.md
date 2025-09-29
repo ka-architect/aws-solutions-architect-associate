@@ -34,6 +34,7 @@
 - Back-End Layer: protection at CloudFront, API Gateway, and ELB
     - Security Groups and Network ACL's filter traffic at ENI
     - Protect API Gateway endpoints with WAF, implement burst limits, header filtering, and API keys to auto-reject
+- You can protect system from DDoS by using CloudFront, using ALB with ASG, deploying back-end instances in private subnet, or setup CloudWatch alarm for high NetworkIn and CPU metrics
 
 # Amazon GuardDuty
 - Uses ML for intelligent threat discovery to protect the account
