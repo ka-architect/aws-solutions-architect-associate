@@ -43,37 +43,8 @@
 - Can integrate with AWS Services or On-Prem endpoints
 - Can also include human intervention
 
-# DynamoDB
-- Fully managed NoSQL DB, no need to provision hardware like RDS
-- Made up of tables that must contain a private key (partition key + optional sort key)
-- Supports rapidly evolving schemas unlike RDBMS
-- Max data size is 400KB, data must be of type: Scalar (standard), Document (list/map), or Set (string, number, binary sets)
-- Can have TTL set on rows to expire data (sessions)
-
-## Capacity Modes
-- **Read Capacity Units (RCU)** and **Write Capacity Units (WCU)**
-- Provisioned mode: plan R/W per second ahead of time, pay for RCU and WCU (default)
-- On-Demand mode: no RCU/WCU planning needed, scales to workload, pay per use
-    - Great for steep, sudden spikes on DB
-
-## Dynamo DB Accelerator (DAX)
-- fully managed in memory cache for DynamoDB used to resolve read congestion
-- no need to modify app logic, because its compatible with DB APIs
-- can be used with elasticache, DAX is better for individual objects cache, query and scan cache
-
-## Dynamo DB Streams
-- store ordered stream of all table actions in real time with 24 hour retention, limited consumers, can be processed via lambda/KDS
-- KDS streams has 1 year retention, more consumers and more processing
-
-## Global Tables
-- DynamoDB tables that are replicated across regions, that can be replicated both ways
-- must have DynamoDB streams enabled
-- low latency access in multiple regions, R/W to table in any region (Active/Active)
-
-## Backup
-- Point In Time Recovery or On-Demand backups
-- Export to S3, Import from S3
-- Use athena to query the backups, ETL on top of backups
+# DynamoDB Serverless and Amazon Aurora DB Serverless
+- Serverless RDBMS and NoSQL
 
 # API Gateway
 - Serverless gateway to allow public access to services via REST, proxies to destination (HTTP/EC2/lambda)

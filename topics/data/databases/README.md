@@ -59,7 +59,7 @@
 - This is the only difference between RDS and RDS Custom
 - Hosted on EC2 instances, optimized for DB loads
 
-# Amazon Aurora RDS
+# Amazon Aurora RDS/Amazon Aurora Serverless
 - Serverless, AWS-propeitary, cloud-optimized DB that works well with PostgreSQL and MySQL drivers
 - Costs more than RDS because of its efficiency, HA, instant failover, storage scaling features
 - Supports up to 15 read replicas with very low replication lag, which can be cross-region
@@ -72,6 +72,13 @@
 - You can also create custom endpoints for use cases like reporting, jobs, where you can query only certain DB's
 - **Proxy Fleet:** Serverless, auto db initialize, auto scaling when handling unexpected loads without provisioning
 - You can invoke an AWS Lambda function from an Amazon Aurora MySQL DB with a native function or a stored procedure
+- Compatible API for PostgreSQL and MySQL, separates storage and compute
+- Cluster: endpoints for writers and readers
+- Backups on S3 either MySQL backup or PerconaXtra Backup, Restore is PITR
+- Aurora Global DB, Aurora Serverless, Aurora DB Cloning (quick creation of test DB from production DB)
+- Aurora Serverless uses Aurora capacity units (ACUs) to handle the scaling up/down, each ACU is 2GB of memory
+    - when figuring out how to scale based on ACU's you will need memory spend on the DB (Example: 16GB = 8 ACUs since each one is 2GB )
+- You can invoke an AWS Lambda function from an Amazon Aurora MySQL DB with a native function or a stored procedure
 
 ## Aurora Global Database
 - **Aurora Global Database:** cross-region Aurora replicas, easy to implement DR strategy
@@ -82,7 +89,7 @@
 - When converting MSSQL to PostgreSQL, allows apps to migrate with little to no code changes, since using same driver as MSSQL
 - Accepts TSQL and converts to PL/PGSQL
 
-# Backups and Restore
+# RDS Backups and Restore
 
 ## Backups
 - Can be automated or manual, automated is 1-35 days of retention
@@ -110,21 +117,12 @@
 - No need for code changes, reduced failover time since apps connect to endpoint and not actual DB
 - Use case: lambda functions, regular service to DB connections
 
-## Aurora
-- Compatible API for PostgreSQL and MySQL, separates storage and compute
-- Cluster: endpoints for writers and readers
-- Backups on S3 either MySQL backup or PerconaXtra Backup, Restore is PITR
-- Aurora Global DB, Aurora Serverless, Aurora DB Cloning (quick creation of test DB from production DB)
-- Aurora Serverless uses Aurora capacity units (ACUs) to handle the scaling up/down, each ACU is 2GB of memory
-    - when figuring out how to scale based on ACU's you will need memory spend on the DB (Example: 16GB = 8 ACUs since each one is 2GB )
-- You can invoke an AWS Lambda function from an Amazon Aurora MySQL DB with a native function or a stored procedure
-
-## ElastiCache
+# ElastiCache
 - Managed Redis or Memcached, in memory store for reading data
 - Supports clustering (redis)/sharding (memcached) for read replicas
 - Requires app code changes for first implementation
 
-## DynamoDB
+# DynamoDB
 - Managed serverless NoSQL DB
 - Provisioned or On-Demand (good for sudden, steep spikes of traffic) Capacity Modes
 - Tables have TTL to expire data, can replace ElastiCache for this feature
@@ -137,32 +135,62 @@
 - The more distinct partition key values that your workload accesses, the more those requests will be spread across the partitioned space
 - The less distinct partition key values, the less evenly spread it would be across the partitioned space, which effectively slows the performance
 - You will use your provisioned throughput more efficiently as the ratio of partition key values accessed to the total number of partition key values increases
-- Composite primary key will provide more partition for the table and in turn, improves the performance. 
+- Composite primary key will provide more partition for the table and in turn, improves the performance.
+- Fully managed NoSQL DB, no need to provision hardware like RDS
+- Made up of tables that must contain a private key (partition key + optional sort key)
+- Supports rapidly evolving schemas unlike RDBMS
+- Max data size is 400KB, data must be of type: Scalar (standard), Document (list/map), or Set (string, number, binary sets)
+- Can have TTL set on rows to expire data (sessions)
 
-## S3
+## Global Tables
+- DynamoDB tables that are replicated across regions, that can be replicated both ways
+- must have DynamoDB streams enabled
+- low latency access in multiple regions, R/W to table in any region (Active/Active)
+
+## Backup
+- Point In Time Recovery or On-Demand backups
+- Export to S3, Import from S3
+- Use athena to query the backups, ETL on top of backups
+
+## DynamoDB Capacity Modes
+- **Read Capacity Units (RCU)** and **Write Capacity Units (WCU)**
+- Provisioned mode: plan R/W per second ahead of time, pay for RCU and WCU (default)
+- On-Demand mode: no RCU/WCU planning needed, scales to workload, pay per use
+    - Great for steep, sudden spikes on DB
+
+## Dynamo DB Accelerator (DAX)
+- fully managed in memory cache for DynamoDB used to resolve read congestion
+- no need to modify app logic, because its compatible with DB APIs
+- can be used with elasticache, DAX is better for individual objects cache, query and scan cache
+
+## Dynamo DB Streams
+- store ordered stream of all table actions in real time with 24 hour retention, limited consumers, can be processed via lambda/KDS
+- KDS streams has 1 year retention, more consumers and more processing
+
+# S3
 - Serverless, infinite scaling, 5TB max file size, allows versioning
 - key-value store for big objects
 - Many tiers managed via lifecycle policy
 - Improve performace with batch operations, multi-part upload, S3 Transfer Accelerator
 - Client and Server Side encryption
 
-## DocumentDB
+# DocumentDB
 - AWS managed version of MongoDB that stores, queries, and indexes JSON data
 - Supports millions of requests per second
 - Similar deployment as Aurora, auto-scaling for storage
 
-## Neptune
+# Neptune
 - Fully managed GraphDB, used for graph data sets with relationships
 - Can store and query billions of relations
 - **Neptune Streams:** realtime ordered sequence of every change in the DB, accessible via REST
 
-## Keyspaces
+# Keyspaces
 - AWS managed Cassandra NoSQL database, allows Cassandra Query Language (CQL)
 - Serverless and scalable, auto scales tables up and down based on traffic
 - 1000s of requests per second
 - Similar capacity modes as DynamoDB
 
-## Amazon Time Stream
+# Amazon Time Stream
 - AWS Managed, serverless, scalable TimeSeries DB
 - Can scale storage and analysis of trillions of events per day
 - Great for IOT, near real-time analytics
