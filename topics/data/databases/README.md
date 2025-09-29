@@ -140,7 +140,7 @@
 - Made up of tables that must contain a private key (partition key + optional sort key)
 - Supports rapidly evolving schemas unlike RDBMS
 - Max data size is 400KB, data must be of type: Scalar (standard), Document (list/map), or Set (string, number, binary sets)
-- Can have TTL set on rows to expire data (sessions)
+- Key-Value pair DB
 
 ## Global Tables
 - DynamoDB tables that are replicated across regions, that can be replicated both ways
@@ -164,8 +164,8 @@
 - can be used with elasticache, DAX is better for individual objects cache, query and scan cache
 
 ## Dynamo DB Streams
-- store ordered stream of all table actions in real time with 24 hour retention, limited consumers, can be processed via lambda/KDS
-- KDS streams has 1 year retention, more consumers and more processing
+- store ordered stream of all table actions in real time with 24 hour retention, limited consumers, can be processed via lambda/KDF
+- KDF streams has 1 year retention, more consumers and more processing
 
 # S3
 - Serverless, infinite scaling, 5TB max file size, allows versioning
