@@ -162,6 +162,7 @@
     - Either AWS managed AD, which is out-of-the-box
     - Or to self-managed AD on-prem, either with trust or AD connector, some latency
     - Depends on where you want to manage the users either on-prem or AWS
+- IAM Identity Center + Managed Microsoft AD + two-way forest trust = multi-account access with on-premises AD management
 
 # AWS Control Tower
 - **AWS Control Tower:** set up and govern secure and compliant multi-account AWS env

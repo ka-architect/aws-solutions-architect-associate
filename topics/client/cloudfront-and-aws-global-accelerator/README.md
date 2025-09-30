@@ -13,6 +13,8 @@
 - Optimized for both dynamic and static content with optimized cache behavior, latency, and throughput
 - **Field-Level Encryption:** securely upload sensitive data (credit card numbers) to your origin
 - **Origin Access Control (OAC):** restrict access to S3 bucket from CloudFront, without making S3 public
+- Default, minimum, and maximum TTL is configurable
+- Implementing the Cache-Control private directive on S3 objects ensures content is cached by CloudFront and  browsers not by shared cache, maintainins control over content freshness
 
 ## CloudFront Origins
 - CloudFront can support public AWS origins, VPC origins, or custom origins
