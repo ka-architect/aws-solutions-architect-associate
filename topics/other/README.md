@@ -24,7 +24,8 @@
 - Attributes of CloudFormation:
     - ``CreationPolicy``: prevent status from reaching create complete until ``cfn-signal`` received or timeout, ensures resources properly running before stack creation
     - ``DependsOn``: send a success signal after the applications are installed and configured using the ``cfn-init`` helper script
-    - ``UpdatePolicy``: send a success signal after the applications are installed and configured using ``cfn-signal``, used for updating resources and for stack update rollback 
+    - ``UpdatePolicy``: send a success signal after the applications are installed and configured using ``cfn-signal``, used for updating resources and for stack update rollback
+- CF templates include several major sections, but ``Resources`` section is the only required section
 
 # AWS Simple Email Server (SES)
 - Fully managed service to securely send emails globally at scale

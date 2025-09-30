@@ -44,6 +44,13 @@
 - EC2 Auto Scaling: supports autoscaling for ECS with EC2, pairs with existing ASG and ECS Cluster Capacity Provider
 - **ECS Cluster Capacity Provider:** provisions and scales the infra for ECS tasks within EC2 before the ASG is needed for additional EC2 infra
 
+## ECS Auto Scaling Policy
+- Trigger scaling activities on ECS service or container 
+- The following metrics are available for ECS Service:
+    - ``ECSServiceAverageCPUUtilization`` Average CPU utilization of the service
+    - ``ECSServiceAverageMemoryUtilization`` Average memory utilization of the service
+    - ``ALBRequestCountPerTarget`` Number of requests completed per target in an ALB target group
+
 # Elastic Container Registry
 - ECR: used to store and manage docker image files on AWS
 - Can be both public and private, protected by IAM (EC2 needs to be able to pull image from ECR)

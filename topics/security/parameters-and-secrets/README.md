@@ -30,5 +30,6 @@
 - If ACM is not available in your region, use AWS CLI to upload your third-party certificate to the IAM certificate store.
 
 # CloudHSM
+- AWS CloudHSM is a cloud-based hardware security module (HSM) that enables you to generate and use your own keys
 - Failing admin login more than twice zeroizes HSM appliance (all keys, certificates, and other data on the HSM is destroyed)
 - No way to recover your keys if you lose your credentials, use multiple HSMs in mutli-AZ in production to avoid loss

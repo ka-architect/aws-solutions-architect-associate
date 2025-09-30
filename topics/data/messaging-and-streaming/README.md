@@ -67,6 +67,13 @@
     - **Provisioned:** choose number of shards (how big a stream is), pay per shard per hour, more shards more throughput, default
     - **On-Demand:** no need to provision or manage capacity, scales automatically based on 30 day peak, pay per stream per hour and per GB data in/out
 - Consumers can be EC2 or Firehose and can store their results in DynamoDB, Redshift, or S3
+- **Resharding:** adjust the number of shards in your stream to load
+- There are 2 types of resharding: shard split and shard merge
+    - **Shard Split:** divide a single shard into two shards, increase capacity and cost
+    - **Shard Merge:** you combine two shards into a single shard, decrease capacity and cost
+    - Resharding is pairwise, cannot split/merge more than two shards in single operation
+    - The shard or pair of shards that the resharding operation performed on = parent shard(s), the outcome is called child shard(s)
+- Resharding is done with ``UpdateShardCount`` API
 
 # Kinesis Data Firehose (KDF)
 - Fully managed service that loads streaming data near real time to a service 

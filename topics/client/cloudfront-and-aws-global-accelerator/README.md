@@ -8,6 +8,7 @@
 - Pay for cost of data out per edge location, different prices for different locations
 - Can reduce costs by reducing edge locations or price classes: Price Class All, Price Class 200 (most regions), Price Class 100 (least expensive regions)
 - Cache Invalidation can be done via TTL expiry or bypassing with CloudFront Invalidation, can be all files or specific files
+    - The Cache-Control and Expires headers control how long objects stay in the cache, low values mean more hits to origin and less to edge/cache
 - You can upload certificates but you cannot force SSL on CloudFront
 - Optimized for both dynamic and static content with optimized cache behavior, latency, and throughput
 - **Field-Level Encryption:** securely upload sensitive data (credit card numbers) to your origin

@@ -12,6 +12,7 @@
 - Supports many languages
 - If high memory/long execution time/big file storage, dont use lambda
 - Can be launched in both public and private VPCs
+- Lambda function URLs are HTTP(S) endpoints dedicated to your Lambda function
 
 ## Lambda Environment Variables
 - When you creating/updating Lambda function environment variables, encyrpted with KMS, decrypted at invoke

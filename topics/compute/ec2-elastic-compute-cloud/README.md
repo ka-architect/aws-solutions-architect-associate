@@ -149,6 +149,7 @@
         - can have 100s of EC2 per group
         - each partition is a rack in AWS, by having more racks EC2s are distributed, safe from rack failures within AZ
         - good for big data apps like hadoop, DB, kafka
+- Can get capacity errors when adding instances in same placement group due to shared hardware restrainsts, restart all instances to get all on same hardware
 
 ## EC2 Networking
 - Enhanced networking, no additional cost, uses single root I/O virtualization (SR-IOV) to provide high-performance networking capabilities on supported instance types

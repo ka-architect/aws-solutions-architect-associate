@@ -28,3 +28,7 @@
 - no replication, no HA, non-persistent which creates risk for data loss
 - serverless back up and restore
 - security via IAM policies and SASL auth
+- **Auto Discovery:** the ability for client to automatically identify all nodes in cluster, and maintain connections to all
+    - App does not need to manually connect to individual cache nodes, app connects to one Memcached node and retrieves the list of nodes
+    - Do not need to hardcode the individual cache node endpoints in your application.
+    - Cache node failures are automatically detected; failed nodes are automatically replaced.
