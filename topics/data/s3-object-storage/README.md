@@ -13,6 +13,7 @@
 - Application/Media hosting
 - Big data analysis, data lakes
 - Static website content
+- Excellent for object storage and scalability, performance characteristics differ from EFS or EBS for IOPS demands
 
 ## S3 - Buckets
 - **Buckets:** regional, where you store objects in S3
@@ -74,11 +75,13 @@
     - low latency, high throughput, can sustain 2 AWS failures
     - Use cases: big data analytics, mobile/gaming apps, content
 - **S3 Standard IA**
+    - Objects must be stored for at least 30 days in the current storage before migrating to Standard IA
     - Infrequently access data, rapid access if needed, pay-per-retrieval
     - cheaper than standard
     - 99.9% availability, used for DR/Backups
 - **S3 One Zone IA**
     - HA in 1 AZ, risk of data loss of AZ destroyed, 99.5% availability
+    - Objects must be stored for at least 30 days in the current storage before migrating to One Zone IA
     - Used for secondary backup, recreatable data
 - **S3 Glacier:** low cost storage, price for storage & object retrieval, used as archive or backup
     - **Instant Retrieval** backup access within ms (once per quarter data), minimum 90 day storage

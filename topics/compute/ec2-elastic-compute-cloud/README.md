@@ -59,6 +59,7 @@
 - **Convertable Reserved Instances:** long workloads with flexible instances
     - can be converted during reservation to change type, family, OS, scope, tenancy
     - less discount compared to standard reserved since dynamic
+    - cannot be sold in marketplace
 - **Savings Plans:** long workloads with commitment
     - same discount as Reserved Instances
     - commit to certain type of usage (hourly rate over x years), excess usage billed as on-demand

@@ -69,6 +69,7 @@
 - In UI: IAM > Roles > Create Role
     - Trusted Entity Type: can be a service, account, 3rd party identity, SAML, or custom
     - Service: select a service, create role, name, update JSON, then assign
+- IAM Roles generally do not support the principal element
 
 ## IAM DB Authentication
 - Authenticate to your MySQL and PostgreSQL DB instance 

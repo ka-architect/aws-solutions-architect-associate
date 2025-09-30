@@ -13,6 +13,11 @@
 - If high memory/long execution time/big file storage, dont use lambda
 - Can be launched in both public and private VPCs
 - Lambda function URLs are HTTP(S) endpoints dedicated to your Lambda function
+- Ability to automate the task of initiating and terminating EC2 and DB instances on a predefined schedule can be achieved with EventBridge schedules
+
+# Lambda Resource-Based Policies vs Execution Role
+- Resource-based policies let you grant usage permission to other AWS accounts on a per-resource basis (users)
+- Execution roles grant Lambda functions access to other AWS services, can't control which entity can invoke the function (services)
 
 ## Lambda Environment Variables
 - When you creating/updating Lambda function environment variables, encyrpted with KMS, decrypted at invoke

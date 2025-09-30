@@ -43,7 +43,7 @@
 - 1 static IP per AZ (supports elastic ip)
 - Use case: when app needs to access with set of static IPs (1-3) 
 - Can point to instances or ALB
-- Supports TCP health check
+- Supports HTTP, TCP, UDP, or TLS protocol health check
 - Does not support gRPC
 
 ## Gateway Load Balancer (GLB)

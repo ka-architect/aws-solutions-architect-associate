@@ -47,6 +47,12 @@
     - **Insight Events:** can help detect unusual activity, helps with resource provisioning, creates baseline of management events for normal activity
 - Logs are retained for 90 days, can be exported to Athena
 - Use Case: User Makes DeleteTable API call -> CloudTrail logs the API call -> EventBridge creates the Event -> SNS sends the alert
+- **CloudTrail log file integrity validation:** determine whether a log file was modified, deleted, or unchanged after CloudTrail delivered it
+    - enables you to assert positively that the log file itself has not changed, or that particular user credentials performed specific API activity
+    - when enabled, CloudTrail creates a hash for every log file that it delivers
+    - also creates and delivers **digest file** to S3 folder in log files directory that references the log files for the last hour and contains a hash of each
+- **CloudTrail Lake:** run SQL-based queries to analyze CloudTrail logs, converts from JSON to ORC (columnar storage format optimized for fast retrieval)
+    - Aggregates data into event data stores, based on advanced event selector criteria
 
 # AWS Config
 - auditing and reporting compliance of AWS resources
@@ -62,3 +68,11 @@
 - CloudWatch: perfomance monitoring dashboard, events and alarms, log aggregation and analysis
 - CloudTrail: global service recording API calls, define trails for specific resources
 - AWS Config: record config changes and give historical view of changes, evaluate compliance, create rules for remediation
+
+# Amazon Managed Service for Prometheus
+- serverless, Prometheus-compatible monitoring service for container metrics that makes it easier to securely monitor container environments at scale
+- Monitor containers running on EC2, ECS, Amazon EKS (on EC2 and on Fargate) in the cloud as well as in hybrid environments
+- Use with Amazon Managed Grafana for monitoring, alerts, and dashboard views across Kubernetes environments, including both host- and application-level monitoring
+
+# Amazon Managed Grafana
+- managed and secure data visualization service that you can use to instantly query, correlate, and visualize operational metrics, logs, and traces from multiple sources

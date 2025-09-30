@@ -3,12 +3,14 @@
 # Athena
 - Serverless query service to analyze data stored in S3, using SQL (built on Presto)
 - Pay per TB of data scanned
-- Supports CSV, JSON, Parquet and other formats
+- Supports CSV, JSON, Parquet (columnar) and other formats, and compression
 - Cost Savings
     - Columnar data type for less scans
+    - Compression
     - Partition Data Sets in S3 (easy to query the prefixes) s3://bucket/year=1991/day=1
     - Use larger files, many small files = more memory
 - **Athena Federated Query:** ability to run SQL queries across DB's (AWS/On-Prem) and store results in S3
+- can COPY Apache Parquet and Apache ORC file formats from S3 to Redshift cluster
 
 # Amazon Redshift (Data Warehouse)
 - OLAP - Online Analytical Processing (analytics/data warehouse)
@@ -59,6 +61,7 @@
 - **Glue Data Brew:** clean/normalize data with pre-built transformation
 - **Glue Studio:** UI to manage Glue Jobs
 - **Glue Streaming ETL:** built on spark structured steaming, run real-time ETL jobs instead of batch
+- Can converst CSV to Parquet then send to S3/Athena/Redshift
 
 # AWS Data Lake
 - **Data Lake:** central place for all data to be analyzed
@@ -70,28 +73,14 @@
 - Cross-account sharing is free with AWS Lake Formation
 - S3 is the storage layer for Lake Formation
 - You can registering existing S3 buckets that contain your data, creates new buckets for the data lake and imports data into them
-
-Amazon Athena supports a wide variety of data formats like CSV, TSV, JSON, or Textfiles and also supports open-source columnar formats such as Apache ORC and Apache Parquet. Athena also supports compressed data in Snappy, Zlib, LZO, and GZIP formats. By compressing, partitioning, and using columnar formats you can improve performance and reduce your costs.
-
-Parquet and ORC file formats both support predicate pushdown (also called predicate filtering). Parquet and ORC both have blocks of data that represent column values. Each block holds statistics for the block, such as max/min values. When a query is being executed, these statistics determine whether the block should be read or skipped.
-
-Athena charges you by the amount of data scanned per query. You can save on costs and get better performance if you partition the data, compress data, or convert it to columnar formats such as Apache Parquet.
-
-
-
-Apache Parquet is an open-source columnar storage format that is 2x faster to unload and takes up 6x less storage in Amazon S3 as compared to other text formats. One can COPY Apache Parquet and Apache ORC file formats from Amazon S3 to your Amazon Redshift cluster. Using AWS Glue, one can configure and run a job to transform CSV data to Parquet. Parquet is a columnar format that is well suited for AWS analytics services like Amazon Athena and Amazon Redshift Spectrum.
-
-When an integrated AWS service requests access to data in an Amazon S3 location that is access-controlled by AWS Lake Formation, Lake Formation supplies temporary credentials to access the data. To enable Lake Formation to control access to underlying data at an Amazon S3 location, you register that location with Lake Formation.
-
-To enable Lake Formation principals to read and write underlying data with access controlled by Lake Formation permissions:
-
-– The Amazon S3 locations that contain the data must be registered with Lake Formation.
-
-– Principals who create Data Catalog tables that point to underlying data locations must have data location permissions.
-
-– Principals who read and write underlying data must have Lake Formation data access permissions on the Data Catalog tables that point to the underlying data locations.
-
-– Principals who read and write underlying data must have the lakeformation:GetDataAccess IAM permission.
+- Tag-based access control ensures that only authorized users can access sensitive data, by attaching tags to data
+- Integrates with AWS Security Hub to monitor the security of your data lake and receive alerts when potential security issues are detected. 
+- Enable Lake Formation principals to RW data with access controlled by Lake Formation permissions:
+    – S3 locations must be registered with Lake Formation
+    – Principals who create Data Catalog tables pointing to underlying data locations must have permissions
+    – Principals who RW data must have Lake Formation data access permissions on the Data Catalog tables
+    – Principals who RW data must have the ``lakeformation:GetDataAccess`` IAM permission
+- When integrated service requests access to Lake Formation, temporary credentials given to access the data
 
 # Apache Flink
 - Fully managed service that allows you to run Flink on a managed cluster

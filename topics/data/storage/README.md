@@ -156,3 +156,5 @@
 - Compatable with NFS only and many OS and AWS services
 - Up to a million IOPS with very low latency
 - Snapshots, compression, no data de-duplication, point in time instantaneous cloning
+- **NetApp SnapMirror Replication:** DR purposes, continously replicates data from a source to target FSx for ONTAP file system across regions in both single-AZ and multi-AZ options
+    - can be configured as frequently as 5 minute intervals for FlexVol volumes

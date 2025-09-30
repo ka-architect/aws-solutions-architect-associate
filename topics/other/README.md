@@ -117,6 +117,10 @@
 - Wavelength Zones can be used to extend an Amazon VPC in order to run ultra-low latency applications that use the same AWS services, APIs, tools, and functionalities
 - Combines the high bandwidth and ultralow latency of 5G networks with AWS, without leaving the mobile providers’ network
 
+# AWS Local Zones
+ - AWS infrastructure deployment that places services closer to certain locations with single-digit millisecond latency
+ - Different from wavelength since wavelength is only mobile workloads
+
 # AWS Service Health Dashboard
 - Shows public events that may affect several customers in particular regions (not how specific events impacted individual AWS accounts)
 
