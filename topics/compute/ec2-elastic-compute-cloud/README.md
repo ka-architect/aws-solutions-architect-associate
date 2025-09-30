@@ -83,6 +83,10 @@
     - no time commitment
     - combine with regional reserved instances and savings plan to benefit from discount
     - best for short-term uninteruppted workloads that need to be in specific AZ
+- Regional Purchasing Limits are set by region not by AZ, can request increase by completing form:
+    - Reserved Instances: 20 per region
+    - Spot Instances: Spot limit per region
+    - On-Demand Instances: vCPU-based limits per region
 
 ## Which Option to Choose?
 - Think of this analogy like booking hotel rooms
@@ -145,6 +149,15 @@
         - can have 100s of EC2 per group
         - each partition is a rack in AWS, by having more racks EC2s are distributed, safe from rack failures within AZ
         - good for big data apps like hadoop, DB, kafka
+
+## EC2 Networking
+- Enhanced networking, no additional cost, uses single root I/O virtualization (SR-IOV) to provide high-performance networking capabilities on supported instance types
+- SR-IOV is a method of device virtualization that provides higher I/O performance and lower CPU utilization when compared to traditional virtualized network interfaces
+- Provides higher bandwidth, higher packet per second (PPS) performance, and consistently lower inter-instance latencies
+- **Elastic Network Adapter (ENA):** provides enhanced networking capabilities for EC2, up to 100 Gbps, provide traditional IP networking features required for VPC
+- **Elastic Fabric Adapter (EFA):** is simply an ENA, with additional OS-bypass functionality
+- **OS-bypass:** access model that allows HPC and ML apps to communicate directly with network interface to provide low-latency, reliable transport
+- EFA not supported on Windows instances, ENA supported for Windows
 
 ## Elastic Network Interface (ENI)
 - **Elastic Network Interface (ENI):** logical component within a VPC that represents a virtual network card

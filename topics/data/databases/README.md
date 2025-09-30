@@ -80,6 +80,11 @@
     - when figuring out how to scale based on ACU's you will need memory spend on the DB (Example: 16GB = 8 ACUs since each one is 2GB )
 - You can invoke an AWS Lambda function from an Amazon Aurora MySQL DB with a native function or a stored procedure
 
+## Aurora Failover
+- Amazon Aurora Replica in same or different AZ, Amazon Aurora flips the canonical name record (CNAME not A record) to healthy replica, failover within 30 sec
+- Aurora Serverless and the DB/AZ becomes unavailable, Aurora will automatically recreate the DB instance in a different AZ
+- Single instance (w/o Replica and w/o Serverless), Aurora will attempt to create a new DB Instance in the same AZ as original instance (best-effort basis - may not succeed)
+
 ## Aurora Global Database
 - **Aurora Global Database:** cross-region Aurora replicas, easy to implement DR strategy
 - low RTO to promote another region, with low replication cross-region
@@ -128,19 +133,38 @@
 - Tables have TTL to expire data, can replace ElastiCache for this feature
 - Read caching with DAX, Multi-AZ with Global Tables, Event Processing with DynamoDB Streams
 - Backups via PITR or on-demand, restore creates new tables
-- **Partition Key:** portion of a table’s primary key that determines the logical partitions in which a table’s data is stored
-    - A partition key must distribute I/O requests evenly, to stop “hot” partitions and throttling
-    - Provisioned I/O capacity for the table is divided evenly among these physical partitions
-- Optimal usage of a table’s provisioned throughput depends on workload and partition-key design
-- The more distinct partition key values that your workload accesses, the more those requests will be spread across the partitioned space
-- The less distinct partition key values, the less evenly spread it would be across the partitioned space, which effectively slows the performance
-- You will use your provisioned throughput more efficiently as the ratio of partition key values accessed to the total number of partition key values increases
-- Composite primary key will provide more partition for the table and in turn, improves the performance.
-- Fully managed NoSQL DB, no need to provision hardware like RDS
 - Made up of tables that must contain a private key (partition key + optional sort key)
 - Supports rapidly evolving schemas unlike RDBMS
 - Max data size is 400KB, data must be of type: Scalar (standard), Document (list/map), or Set (string, number, binary sets)
 - Key-Value pair DB
+- Data is stored in partitions, backed by SSDs, and automatically replicated across multiple AZs, providing HA and data durability
+- Writes are unconditional by default, to prevent multiple users writing same value add CondiditonalWrite feature in the request
+- **Eventually Consistent Reads:** data that may not be latest when requested, default
+- **Consistent Reads:** when latest information is always required, set to ConsistentRead to true in the request, not supported across regions, impacted by latency
+- **Primary Key:** unique ID for each item in the table, no two items can have same key, must be scalar type
+- **Partition Key:** simple primary key, composed of one attribute, determines the logical partitions in which data is stored
+- **Composite Key:** partition key and sort key, composed of two attributes, sort key is optional
+- **Secondary Index:** query data in table with alternate key, in addition to queries against the primary key
+    - Two Kinds of Indexes: Global secondary index and local secondary index
+    - **Global Secondary Index:** index with partition key and sorty key that is different from those on table
+    - **Local Secondary Index:** index with same partition key as table but different sort key
+    - You can create one or more secondary indexes on a table, max 20 global, max 5 local
+
+## DynamoDB AutoScaling
+- Dynamically adjusts provisioned throughput capacity in response to load
+- Enables a table or a global secondary index to increase its provisioned read/write capacity to handle sudden increases in traffic without throttling
+- Auto Scaling is not enabled in a DynamoDB table created using AWS CLI
+
+## DynamoDB Partitioning
+- Uses partition key value as input to an internal hash function, output from the hash determines the partition where item stored
+- All items with the same partition key stored together, sorted by sort key value (no two items can have the same partition key value if no sort key used)
+- A partition key must distribute I/O requests evenly, to stop “hot” partitions and throttling
+- Provisioned I/O capacity for the table is divided evenly among these physical partitions
+- Optimal usage of a table’s provisioned throughput depends on workload and partition-key design
+- The more distinct partition key values that your workload accesses, the more those requests will be spread across the partitioned space
+- The less distinct partition key values, the less evenly spread it would be across the partitioned space, which effectively slows the performance
+- You will use your provisioned throughput more efficiently as the ratio of partition key values accessed to the total number of partition key values increases
+- Composite primary key will provide more partition for the table and improve the performance
 
 ## Global Tables
 - DynamoDB tables that are replicated across regions, that can be replicated both ways
@@ -151,9 +175,14 @@
 - Point In Time Recovery or On-Demand backups
 - Export to S3, Import from S3
 - Use athena to query the backups, ETL on top of backups
+- Cannot copy DynamoDB on-demand backups to a different account or Region
 
 ## DynamoDB Capacity Modes
 - **Read Capacity Units (RCU)** and **Write Capacity Units (WCU)**
+- Strongly consistent reads/2 eventually consistent reads = 1 RCU up to 4KB in size, more than 4KB = more RCU
+- 1 WCU per write of 1KB, more than 1KB = more WCU
+- Throttling protects against overuse of capacity units, throughput set per table, can also throttle read requests exceeds for an index
+    - Throttle returns HTTP 400 code and ``ProvisionedThroughputExceededException``
 - Provisioned mode: plan R/W per second ahead of time, pay for RCU and WCU (default)
 - On-Demand mode: no RCU/WCU planning needed, scales to workload, pay per use
     - Great for steep, sudden spikes on DB
@@ -164,7 +193,9 @@
 - can be used with elasticache, DAX is better for individual objects cache, query and scan cache
 
 ## Dynamo DB Streams
-- store ordered stream of all table actions in real time with 24 hour retention, limited consumers, can be processed via lambda/KDS
+- Not enabled by default
+- Store ordered stream of all table actions in real time with 24 hour retention, limited consumers, can be processed via lambda/KDS
+- If using lambda, associate the stream ARN with a Lambda function that you write
 - KDS streams has 1 year retention, more consumers and more processing
 
 # S3

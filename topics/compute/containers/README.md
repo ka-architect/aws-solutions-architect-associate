@@ -71,15 +71,18 @@
     - Use AWS KMS to encrypt data stored by etcd nodes and associated EBS volumes
 - **EKS nodes:** connects to the cluster’s control plane via the API server endpoint
 - EKS cluster uses IAM / OIDC for authentication and Kubernetes RBAC for authorization
+- **IAM Authenticator for Kubernetes:**, runs on control plane, gets config info from ``aws-auth ConfigMap`` (AWS authenticator configuration map)
 - By default, cluster control plane logs aren’t sent to CloudWatch Logs, enable each log type individually
 - EKS stores data unencrypted in etcd which may include secrets, intregrates with KMS to encrypted that data
     - AWS KMS key created just for EKS cluster, then encrypts data before saved in etcd at rest
+- **EKS connector agent:** connect external Kubernetes clusters to AWS Management Console
 
 ## EKS Auto Scaling
 - The Kubernetes Horizontal Pod Autoscaler automatically scales the number of Pods in a deployment, replication controller, or replica set based on resource’s CPU utilization
 - When you set a target CPU utilization percentage, the Horizontal Pod Autoscaler scales your application in or out to try to meet that target
 - **Karpenter:** flexible, high-performance Kubernetes cluster autoscaler that launches appropriately sized compute resources to precisely match workload requirements
-- **Cluster Autoscaler:** automatically adjusts the number of nodes in your cluster when pods fail or are rescheduled onto other nodes using Auto Scaling groups
+- **Cluster Autoscaler:** automatically adjusts the number of nodes in your cluster when pods fail or are rescheduled onto other nodes using Auto Scaling groups, slower than Karpenter
+- Kubernetes Metrics Server can be installed to activate Horizontal/Vertical Pod Autoscaling (usually would use horizontal to scale in/out)
 
 ## EKS Storage
 - **Container Storage Interface (CSI):** enable third-party storage providers to deploy plugins, alternative storage systems without modifying Kubernetes code

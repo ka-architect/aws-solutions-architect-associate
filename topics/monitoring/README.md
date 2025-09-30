@@ -36,13 +36,14 @@
 - **Schema Registry:** structures data in bus which allows you to generate code, helps analyze events in bus, allows versioning
 - Resource Based Policy: manage permission for an event bus, used when having a centralized event bus across the organization
 - Use Amazon EventBridge (Amazon CloudWatch Events) to run Amazon ECS tasks when certain AWS events occur (like S3 PUT)
+- Amazon EventBridge can't track the actual traffic to your ALB
 
 # CloudTrail
-- Logs all API calls made by all services
+- Logs all API calls made by all services, encrypted by default by SSE-S3
 - Great for finding out who deleted something
 - 3 event types: management, data, and insights
-    - **Management Events:** operations on AWS resources, logs read and write events
-    - **Data Events:** high volume operations on AWS resources, logs and separates read and write events
+    - **Management Events:** operations on AWS resources, logs read and write events, control plan operations, can include Non-API
+    - **Data Events:** high volume operations on AWS resources, logs and separates read and write events, data plane operations, focused on API activity
     - **Insight Events:** can help detect unusual activity, helps with resource provisioning, creates baseline of management events for normal activity
 - Logs are retained for 90 days, can be exported to Athena
 - Use Case: User Makes DeleteTable API call -> CloudTrail logs the API call -> EventBridge creates the Event -> SNS sends the alert

@@ -101,7 +101,7 @@
     - Supports multi-cast IP, multi-S2S, cross-region (peer Transit Gateways in other regions together), cross-account
     - helps increase bandwidth of S2S VPN connection to AWS via ECMP by leveraging all S2S VPN flows
     - **Equal Cost Multi Path:** ECMP, routing strategy to forward a pack over multiple best paths
-- **VPC Traffic Mirroring:** capture/monitor/filter ENI traffic for content inspection, threat monitoring, or debugging
+- **VPC Traffic Mirroring:** capture ENI traffic, not to filter or inspect
 - **Egress-Only Internet Gateway:** an IPv6 NAT Gateway (NAT Gateway only for IPv4)
     - prevents IPv6 from being access by the internet
     - must update route tables to include NAT Gateway to allow public internet access

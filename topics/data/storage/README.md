@@ -9,13 +9,14 @@
 # Elastic Block Store (EBS)
 - **Elastic Block Storage:** network drive you can attach to EC2 while they run
 - Allows EC2 to persist data even after termination, unlike EC2 instance store
-- Limited to only one EC2 mount at a time, think of it as a network USB stick, unless multi-attach (max 16)
+- Limited to only one EC2 mount at a time, think of it as a network USB stick, unless multi-attach (io1/io2 block express, max 16 EC2 attach)
 - multiple EBS volumes attached to an EC2, volumes are bound to AZ
 - by default, root EBS is deleted when EC2 terminated, can be modified
 - created volumes by default are not deleted on termination
 - since these are network drives and not physical drives, there is some latency for reads/writes
 - data can be moved to another volume via snapshots
 - provisioned capacity (GB/IOPS) which can be modified, billed for this provision
+- automatically replicated within AZ, not on separate AWS region
 
 ## EBS Snapshots
 - **EBS Snapshots:** back up of an EBS volume at a point in time
@@ -71,10 +72,16 @@
 - Must be using a cluster-aware FS (not XFS, EXT4, etc.)
 
 ## EBS Encryption
-- Data at rest, in-flight, snapshots will be encrypted
+- Seamless encryption of EBS data volumes, boot volumes, and snapshots
+- Data at rest, in-flight, snapshots will be encrypted via KMS (AWS-/self-managed)
 - Encryption has minimal impact on latency
 - KMS encyrption keys (AES-256)
 - Snapshots of encrypted volumes are encrypted, to bypass make snapshot unencrypted, then encrypt after copying
+- **Encryption by Default:** enforce the encryption of the new EBS volumes and snapshot copies that you create
+    - no effect on existing EBS volumes or snapshots
+    - Region-specific setting, once enabled cannot be disabled for individual volumes or snapshots in that Region
+    - When enabled, you can launch an instance only if the instance type supports EBS encryption
+– EBS does not support asymmetric KMS keys, does support symmetric keys but manual process
 
 # Elastic File System (EFS)
 - **Elastic File System (EFS):** managed network file system (NFS) for linux systems (POSIX), that can be mounted on EC2 in any AZ
@@ -128,6 +135,7 @@
 - Can be mounted on EC2 Instances (Linux or Windows)
 - Scales up to 10GBPS, millions of IOPS, stores 100PB of data
 - Options: SSD (perofrmance for DBs, analytics, media) or HDD (low cost, for home directories, content)
+- Doesn’t provide the level of performance needed for high-frequency read/write operations in ECS tasks, doesn’t offer low-latency access required for large number of ECS tasks
 
 ## AWS FSx for Lustre
 - Linux-based paralle distributed file system

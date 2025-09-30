@@ -3,7 +3,7 @@
 ## Overview
 - **Identity & Access Manager (IAM):** global AWS service for managing users and groups.
 - **Root Account:** created by default, not to be shared
-- **Users:** people with access to AWS, can be standalone or part of a group or groups
+- **Users:** people with access to AWS, can be standalone or part of a group or groups, IAM user created with CLI/API has no credentials
 - **Groups:** categorizations of users, cannot contain other groups
 
 ## Dashboard
@@ -55,9 +55,10 @@
     - Can use virtual MFA device (google authenticator), U2F, security keys, or devices (like fobs)
 
 ## Access Keys
+- Access keys are long-term credentials for an IAM user or the AWS account root user
 - You can access AWS via management console, CLI, or SDK
-- CLI and SDK access are also controlled via access keys
-- Access keys are generated through AWS console
+- Progmattic CLI, API/SDK requests require access keys
+- Access keys are generated through AWS console when creating a user
 - Users can manage their own access keys
 - Should not be shared: Access Key ID is like a username and Secret Access Key is like a password
 

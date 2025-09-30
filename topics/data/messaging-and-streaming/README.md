@@ -6,7 +6,7 @@
 
 # AWS Simple Queue Service (SQS)
 - Fully managed AWS queue model messaging service 
-- Features: unlimited throughput, unlimited messages, short-lived message retention, low latency
+- Features: unlimited throughput, unlimited messages, short-lived message retention (default 4 days), low latency
 - Message Types: At-Least-Once Delivery (duplicates) or Best Effort Ordering (order)
 - **At-Least-Once Delivery:** messages are processed at least once, can have duplicate messages
 - **Best Effor Ordering:** messages are consumed in order

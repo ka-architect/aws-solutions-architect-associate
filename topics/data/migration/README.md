@@ -7,7 +7,7 @@
 - Used for: issues with network capacity for a data sync, since it uses physical data transfer or edge locations
 - Cannot import to S3 glacier directly, first to S3 then use lifecycle policies
 
-# AWS Storage Gateways
+# AWS Storage Gateways (integration)
 - Used by many hybrid-cloud companies to synchronize data with on-prem, other clouds, and AWS
 - Supports Block, File, and Object storage
 - Use cases: DR, backup and restore, tiered storage, on-prem cache, low latency file access between locations
@@ -36,7 +36,7 @@
 - Security via crednetial management with LDAP, AD, Okta, AWS Cognito, etc, also needs IAM role to write/read to storage
 - Authenticate users directly to Transfer Family
 
-# AWS Data Sync
+# AWS Data Sync (migration)
 - Agent that runs on prem/other cloud to replicate data to AWS over network
 - No agent needed if AWS to AWS transfer
 - Can sync to all storage classes of S3 including Glacier, EFS, and FSx (but not EBS)

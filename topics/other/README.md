@@ -73,6 +73,7 @@
 - bunches EC2 spot instances dynamically to complete the job
 - docker image that runs on ECS
 - Batch vs. Lambda: batch has no limits for time, runtime, disk space, and relies on EC2
+- Define and submit multiple simulation jobs to be executed concurrently
 
 # AWS Amplify
 - Web/Mobile app developement tool
@@ -89,11 +90,12 @@
 # AWS ParallelCluster
 - AWS-supported open-source cluster management tool to deploy and manage High-Performance Computing (HPC) clusters on AWS
 - Uses a simple text file to model and provision resources for HPC apps through secure automation
+- Does not provide higher bandwidth, higher packet per second (PPS) performance, and lower inter-instance latencies, unlike ENA or EFA
 
 # AWS Workspaces
 - Allows you to create the virtual desktops in your VPC
 
-#  AWS Artifact
+# AWS Artifact
 - Central resource for compliance-related information, reports, and agreements
 - Provides on-demand access to AWS’ security and compliance reports and select online agreements
 - All AWS Accounts have access to AWS Artifact via root users and IAM users with admin permissions
@@ -112,6 +114,7 @@
 # AWS Wavelength
 - service that allows developers to create mobile applications with ultra-low latencies
 - Wavelength Zones can be used to extend an Amazon VPC in order to run ultra-low latency applications that use the same AWS services, APIs, tools, and functionalities
+- Combines the high bandwidth and ultralow latency of 5G networks with AWS, without leaving the mobile providers’ network
 
 # AWS Service Health Dashboard
 - Shows public events that may affect several customers in particular regions (not how specific events impacted individual AWS accounts)
@@ -119,3 +122,23 @@
 # AWS Personal Health Dashboard
 - Ongoing visibility into your resource performance and the availability of your AWS services and accounts (updates/outages)
 - Use EventBridge rules to detect and take action specified in a rule (Send emails for upcoming patches to EC2)
+
+# AppSync
+- managed service that makes it easy to build scalable GraphQL and Pub/Sub API that connect applications to data
+- **GraphQL:** language to enable client apps to fetch, change and subscribe to data from servers
+- **GraphQL Query:** client specifies how data is to be structured when returned, query only for the data it needs in required format
+- Interact with data sources like Amazon DynamoDB, AWS Lambda, and HTTP APIs
+- AWS AppSync API creates two endpoints: GraphQL endpoint and real-time endpoint
+- Write resolvers in JS and run via ``APPSYNC_JS`` runtime
+- AppSync pipeline resolvers help aggregate data from multiple DB tables
+- Enable easy retrieval of data from multiple sources with just a single call, streamlining presenting data
+
+# AWS Trusted Advisor
+- Draws upon best practices learned from serving hundreds of thousands of AWS customers
+- Inspects your AWS environment and then makes recommendations when opportunities exist to save money, improve system availability and performance, or help close security gaps
+- **Quota Monitor CloudFormation template:** can export quota limits to CloudWatch/EventBridge then use SNS/SQS/Lambda to notify
+- Many different plans: Business, Developer, Enterprise On-Ramp, or Enterprise Support
+- Trusted Advisor APIs (AWS Support APIs) only available for Business, Enterprise On-Ramp, or Enterprise Support plans
+
+# AWS X-Ray
+- used to debug and analyze your microservices applications with request tracing, does not record API calls
